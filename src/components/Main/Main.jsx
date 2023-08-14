@@ -12,7 +12,6 @@ const Main = () => {
     <>
       <Header />
       <main>
-        <div>Main is imported !!!!!</div>
         <Promo />
         <NavTab />
         <AboutProject />
