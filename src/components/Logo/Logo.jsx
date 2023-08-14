@@ -3,8 +3,9 @@ import './Logo.css';
 import logo from '../../images/logo.svg';
 
 const Logo = () => {
+
   return (
-    <Link className='logo' href='/'>
+    <Link to='/' className='logo' href='/'>
       <img className='logo__img' src={logo} alt='лого' />
     </Link>
   );
