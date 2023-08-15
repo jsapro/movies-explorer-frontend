@@ -2,13 +2,13 @@
 @import url(./vendor//fonts/fonts.css);
 
 #root {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* background-color: #202020; */
-  background-color: rgba(31, 72, 133, 0.329);
+  background-color: rgba(31, 72, 133, 0.74);
   font-family: 'Inter', Arial, sans-serif;
   color: #FFF;
 }
