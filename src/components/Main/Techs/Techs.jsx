@@ -7,7 +7,7 @@ const Techs = () => {
     'JS',
     'React',
     'Git',
-    'Express.js,',
+    'Express.js',
     'mongoDB',
   ];
 
