@@ -16,7 +16,7 @@ const NavTab = () => {
           </Link>
         </li>
         <li className='nav__item'>
-          <Link className='nav__link' to='about-me'>
+          <Link className='nav__link' to='#about-me'>
             Студент
           </Link>
         </li>

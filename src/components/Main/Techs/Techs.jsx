@@ -23,7 +23,7 @@ const Techs = () => {
         <ul className='techs__list'>
           {techList.map((tech, i) => {
             return (
-              <li className='techs__item' key={`${i} + ${tech}`}>
+              <li className='techs__item' key={`n_${i}_${tech}`}>
                 {tech}
               </li>
             );

@@ -1,10 +1,46 @@
+import { Link } from 'react-router-dom';
 import './Portfolio.css';
+import arrow from '../../../images/arrow.svg';
 
 const Portfolio = () => {
+  const linkList = [
+    {
+      name: 'Статичный сайт',
+      url: 'https://github.com/jsapro/how-to-learn',
+    },
+    {
+      name: 'Адаптивный сайт',
+      url: 'https://jsapro.github.io/russian-travel',
+    },
+    {
+      name: 'Одностраничное приложение',
+      url: 'https://getlike-jsapro.nomoredomains.xyz',
+    },
+  ];
+
   return (
-    <>
-      <div>Portfolio is imported !!!!!</div>
-    </>
+    <section className='portfolio'>
+      <h2 className='portfolio__title'>Портфолио</h2>
+      <ul className='portfolio__list'>
+        {linkList.map((item, i) => {
+          return (
+            <li
+              className='portfolio__item'
+              key={`n_${i}_${item.name.split(' ').join('_')}`}
+            >
+              <Link className='portfolio__link' to={item.url} target='_blank'>
+                <p className='portfolio__text'>{item.name}</p>
+                <img
+                  className='portfolio__icon'
+                  src={arrow}
+                  alt='Стрелка-ссылка'
+                />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 };
 
