@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './Portfolio.css';
-import arrow from '../../../images/arrow.svg';
 
 const Portfolio = () => {
   const linkList = [
@@ -30,11 +29,7 @@ const Portfolio = () => {
             >
               <Link className='portfolio__link' to={item.url} target='_blank'>
                 <p className='portfolio__text'>{item.name}</p>
-                <img
-                  className='portfolio__icon'
-                  src={arrow}
-                  alt='Стрелка-ссылка'
-                />
+                <span className='portfolio__icon'>↗</span>
               </Link>
             </li>
           );

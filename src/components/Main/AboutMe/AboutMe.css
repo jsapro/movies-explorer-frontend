@@ -112,10 +112,6 @@
 }
 
 @media all and (min-width:1024px) {
-    .about-me {
-        padding: 110px 70px 100px;
-    }
-
     .about-me__subtitle {
         font-size: 50px;
         line-height: 58px;
@@ -145,6 +141,10 @@
 }
 
 @media all and (min-width:1280px) {
+    .about-me {
+        padding: 110px 70px 100px;
+    }
+
     .about-me__article {
         column-gap: 270px;
     }
