@@ -73,6 +73,7 @@
         font-size: 22px;
         letter-spacing: -0.88px;
         padding: 0 0 23px 0;
+        border-bottom: 1px solid #DADADA;
     }
 
     .techs__subtitle {
@@ -107,18 +108,18 @@
     .techs {
         padding: 100px 70px;
     }
-    
+
     .techs__subtitle {
         padding: 90px 0 0 0;
     }
-    
+
     .techs__description {
         font-size: 14px;
         line-height: 20px;
         letter-spacing: -0.56px;
         padding: 26px 0 0 0;
     }
-    
+
     .techs__list {
         padding: 100px 0 0 0;
         grid-template-columns: repeat(7, 90px);
