@@ -13,6 +13,11 @@
   color: #FFF;
 }
 
+
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   outline: red 1px dotted;
 }
