@@ -2,9 +2,10 @@ import './FilterCheckbox.css';
 
 const FilterCheckbox = () => {
   return (
-    <>
-      <h2>FilterCheckbox !!!!</h2>
-    </>
+    <label htmlFor='checkbox'>
+      <input id='checkbox' type='checkbox'></input>
+      Короткометражки
+    </label>
   );
 };
 
