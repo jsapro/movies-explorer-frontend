@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import './Register.css';
 import Logo from '../Logo/Logo';
-import { Link } from 'react-router-dom';
+import AuthInput from '../AuthInput/AuthInput';
 
 const Register = () => {
   return (
@@ -9,7 +10,12 @@ const Register = () => {
         <Logo />
         <h1>Добро пожаловать!</h1>
         <form>
-          <label>
+
+          <AuthInput></AuthInput>
+          <AuthInput></AuthInput>
+          <AuthInput></AuthInput>
+
+          {/* <label>
             <span>Имя</span>
             <input
               type='text'
@@ -42,7 +48,7 @@ const Register = () => {
           <p>
             Уже зарегистрированы?
             <Link to='/signin'>Войти</Link>
-          </p>
+          </p> */}
         </form>
       </div>
     </main>
