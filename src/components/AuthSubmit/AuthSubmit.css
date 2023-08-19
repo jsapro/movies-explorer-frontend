@@ -1,0 +1,70 @@
+.auth-submit {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 179px 0 0;
+}
+
+.auth-submit__error-text {
+    /* скрыто пока нет ошибки */
+    display: none;
+    color: #FF004C;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+    padding-bottom: 20px;
+}
+
+.auth-submit__button {
+    width: 100%;
+    border-radius: 3px;
+    background: #4285F4;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+    padding: 15px 0;
+}
+
+.auth-submit__question {
+    margin: 0;
+    color: #8B8B8B;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    padding: 14px 0 0 0;
+}
+
+.auth-submit__link {
+    text-decoration: none;
+    color: #4285F4;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: normal;
+    padding-left: 7px;
+}
+
+@media all and (min-width: 768px) {
+    .auth-submit {
+        padding: 91px 0 0;
+    }
+    
+    .auth-submit__button {
+        font-size: 14px;
+    }
+    
+    .auth-submit__question {
+        font-size: 14px;
+        padding: 16px 0 0 0;
+    }
+    
+    .auth-submit__link {
+        font-size: 14px;
+        padding-left: 6px;
+    }
+}

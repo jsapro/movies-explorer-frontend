@@ -23,7 +23,6 @@
     padding: 5px 12px;
     border-radius: 3px;
     background: #3DDC84;
-    margin-right: 14px;
 }
 
 @media screen and (min-width: 768px) {
@@ -33,16 +32,7 @@
     }
 
     .navigation__login {
-        margin-right: 30px;
         padding: 8px 20px;
         font-size: 12px;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    
-    
-    .navigation__login {
-        margin-right: 70px;
     }
 }
