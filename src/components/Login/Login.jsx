@@ -9,11 +9,20 @@ const Login = () => {
       <div className='login__container'>
         <Logo />
         <h1 className='login__title'>Рады видеть!</h1>
-        <form className='login__form'>
-          <AuthInput></AuthInput>
-          <AuthInput></AuthInput>
+        <form name='login' className='login__form' autoComplete='on'>
+          <AuthInput
+            inputDescription='E-mail'
+            name='email'
+            type='email'
+          />
+          <AuthInput
+            inputDescription='Пароль'
+            name='password'
+            minLength={5}
+            type='password'
+          />
 
-          <AuthSubmit type='login'></AuthSubmit>
+          <AuthSubmit type='login' />
         </form>
       </div>
     </main>
