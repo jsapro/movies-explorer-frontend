@@ -15,7 +15,7 @@ const Register = () => {
           <AuthInput></AuthInput>
 
           
-          <AuthSubmit></AuthSubmit>
+          <AuthSubmit type='register'></AuthSubmit>
         </form>
       </div>
     </main>

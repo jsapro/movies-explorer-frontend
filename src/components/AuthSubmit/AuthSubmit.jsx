@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom';
 import './AuthSubmit.css';
 
-const AuthSubmit = () => {
+const AuthSubmit = ({type}) => {
+
+
   return (
-    <div className='auth-submit'>
+    <div className={`auth-submit auth-submit_type_${type}`}>
       <p className='auth-submit__error-text'>Что-то пошло не так...</p>
 
-      <button className='auth-submit__button' type='submit' disabled='false'>
+      <button className='auth-submit__button' type='submit'>
         Зарегистрироваться
       </button>
 

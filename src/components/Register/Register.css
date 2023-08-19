@@ -5,6 +5,7 @@
     min-height: 100vh;
     box-sizing: border-box;
     padding: 56px 0 30px;
+    transition: padding 1s;
 }
 
 .register__container {
@@ -33,13 +34,13 @@
     .register {
         padding: 232px 0;
     }
-
+    
     .register__title {
         padding: 40px 0 20px;
         text-align: left;
         align-self: flex-start;
     }
-
+    
     .register__container {
         max-width: 396px;
         align-items: flex-start;
