@@ -1,4 +1,4 @@
-.navigation__list {
+.nav-guest__list {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,7 +7,7 @@
     margin: 0;
 }
 
-.navigation__register {
+.nav-guest__register {
     color: #FFF;
     font-size: 10px;
     font-weight: 500;
@@ -15,7 +15,7 @@
     padding-right: 14px;
 }
 
-.navigation__login {
+.nav-guest__login {
     color: #000;
     font-size: 10px;
     font-weight: 500;
@@ -26,12 +26,12 @@
 }
 
 @media screen and (min-width: 768px) {
-    .navigation__register {
+    .nav-guest__register {
         font-size: 12px;
         padding-right: 30px;
     }
 
-    .navigation__login {
+    .nav-guest__login {
         padding: 8px 20px;
         font-size: 12px;
     }
