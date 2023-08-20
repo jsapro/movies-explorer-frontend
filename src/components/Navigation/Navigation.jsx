@@ -29,13 +29,29 @@ const Navigation = () => {
       <nav className='nav-desktop'>
         <ul className='nav-desktop__list'>
           <li className='nav-desktop__item'>
-            <NavLink className='nav-desktop__link'>Фильмы</NavLink>
+            <NavLink
+              to='/movies'
+              className={({ isActive }) =>
+                `nav-desktop__link ${isActive && 'nav-desktop__link_active'}`
+              }
+            >
+              Фильмы
+            </NavLink>
           </li>
           <li className='nav-desktop__item'>
-            <NavLink className='nav-desktop__link'>Сохранённые фильмы</NavLink>
+            <NavLink
+              to='/saved-movies'
+              className={({ isActive }) =>
+                `nav-desktop__link ${isActive && 'nav-desktop__link_active'}`
+              }
+            >
+              Сохранённые фильмы
+            </NavLink>
           </li>
-          <li className='nav-desktop__item'>
-            <NavLink className='nav-desktop__link'>Аккаунт</NavLink>
+          <li className='nav-desktop__item nav-desktop__item_type_special'>
+            <NavLink to='/profile' className='nav-desktop__link nav-desktop__link_type_special'>
+              Аккаунт
+            </NavLink>
           </li>
         </ul>
       </nav>
@@ -58,13 +74,6 @@ const Navigation = () => {
   };
 
   return getActualNav();
-  // <>
-  //   {!isAuthorized ? (
-  //     getNotAuthorizedNav()
-  //   ) : (
-  //     <>{isMobileMode ? getBurgerNav() : getNotBurgerNav()}</>
-  //   )}
-  // </>
 };
 
 export default Navigation;

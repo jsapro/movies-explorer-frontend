@@ -36,3 +36,52 @@
         font-size: 12px;
     }
 }
+
+/* Стили для навигации в хэдере для зарегистрированного пользователя и экрана больше 768 px  ======================*/
+.nav-desktop {
+    width: 100%;
+}
+
+.nav-desktop__list {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.nav-desktop__item {
+    padding: 28px 0;
+}
+
+.nav-desktop__item:first-of-type {
+    padding-right: 16px;
+}
+
+.nav-desktop__item_type_special {
+    padding: 28px 0;
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.nav-desktop__link {
+    color: #FFF;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.nav-desktop__link_active{
+  font-weight: 500;
+}
+
+.nav-desktop__link_type_special {
+    font-size: 14px;
+    line-height: 16px;
+    padding: 8px 22px;
+    border-radius: 20px;
+    background: #313131;
+    border: none;
+    outline: none;
+}

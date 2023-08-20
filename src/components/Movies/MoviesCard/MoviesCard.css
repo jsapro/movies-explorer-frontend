@@ -117,6 +117,15 @@
     }
 
     .movies-card__caption {
-        padding-top: 14px;
+        padding-top: 10px;
+    }
+
+    .movies-card__name {
+        margin-left: 14px;
+    }
+
+    .movies-card__duration {
+        margin-right: 14px;
+        padding: 5px 9px;
     }
 }
