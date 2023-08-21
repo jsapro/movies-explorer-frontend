@@ -92,7 +92,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    background-color: hsla(0, 0%, 0%, 0.3);
     width: 100%;
     height: 100%;
     opacity: 0;
@@ -113,26 +112,25 @@
     margin-left: auto;
     width: 100%;
     height: 100%;
+    transition: width 1s;
 }
 
 .nav-burger__close-btn {
     position: absolute;
-    top: 20px;
-    right: 20px;
     background: transparent;
     background-image: url('../../images/close-btn.svg');
     background-position: center;
     background-repeat: no-repeat;
-    width: 13px;
-    height: 13px;
     border: none;
     cursor: pointer;
+    top: 19px;
+    right: 19px;
+    width: 20px;
+    height: 20px;
 }
 
 .nav-burger__list {
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
     list-style: none;
     display: flex;
     flex-direction: column;
@@ -166,4 +164,37 @@
     padding: 8px 21px;
     font-size: 14px;
     line-height: 16px;
+}
+
+@media all and (min-width: 600px) {
+    .nav-burger {
+        background-color: hsla(0, 0%, 0%, 0.3);
+    }
+
+    .nav-burger__container {
+        width: 68%;
+    }
+}
+
+@media all and (min-width: 768px) {
+    .nav-burger__list {
+        padding: 159px 0 98px 0;
+        gap: 29px;
+    }
+
+    .nav-burger__link {
+        padding-bottom: 5px;
+    }
+
+    .nav-burger__link_type_special {
+        padding: 8px 21px;
+    }
+
+    .nav-burger__close-btn {
+        top: 21px;
+        right: 21px;
+        width: 34px;
+        height: 34px;
+    }
+
 }
