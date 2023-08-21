@@ -118,11 +118,10 @@
     z-index: 1;
 }
 
-/*  открыть меню: раскомментировать .nav-burger_opened */
-/* .nav-burger_opened {
+.nav-burger_opened {
     visibility: visible;
     opacity: 1;
-} */
+}
 
 .nav-burger__container {
     background: #202020;

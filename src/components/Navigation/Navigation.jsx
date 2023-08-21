@@ -1,8 +1,20 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import { useState } from 'react';
 import './Navigation.css';
-import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
+  const openBurger = () => {
+    setIsBurgerOpen(true);
+  };
+
+  const closeBurger = () => {
+    setIsBurgerOpen(false);
+  };
+
+  console.log(isBurgerOpen);
+
   const isMobileMode = window.innerWidth <= 768;
   console.log(isMobileMode);
 
@@ -74,10 +86,12 @@ const Navigation = () => {
   const getBurgerNav = () => {
     return (
       <>
-        <button className='nav-burget-btn' />
-        <section className='nav-burger nav-burger_opened'>
+        <button onClick={openBurger} className='nav-burget-btn' />
+        <section
+          className={`nav-burger ${isBurgerOpen && 'nav-burger_opened'} `}
+        >
           <div className='nav-burger__container'>
-            <button className='nav-burger__close-btn' />
+            <button onClick={closeBurger} className='nav-burger__close-btn' />
             <nav>
               <ul className='nav-burger__list'>
                 <li className='nav-burger__item'>
