@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import './Navigation.css';
 
 const Navigation = () => {
-  console.log(window.innerWidth);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 768);
 
@@ -11,6 +10,7 @@ const Navigation = () => {
     setIsMobileMode(window.innerWidth <= 768);
   });
 
+  // Хэдер меняется в зависимомти от авторизации
   const isAuthorized = true;
   // const isAuthorized = false;
 

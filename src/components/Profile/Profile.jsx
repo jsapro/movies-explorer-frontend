@@ -2,6 +2,8 @@ import './Profile.css';
 import Header from '../Header/Header';
 
 const Profile = () => {
+
+  // Выбор кнопки Редактировать/Сохранить
   // const isReadyToSave = true;
   const isReadyToSave = false;
 

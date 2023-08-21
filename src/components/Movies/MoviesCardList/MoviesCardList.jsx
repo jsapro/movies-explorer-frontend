@@ -20,7 +20,7 @@ const MoviesCardList = () => {
       </ul>
 
       <div className='movies-card-list__btn-container'>
-        <button className='movies-card-list__more-btn' type='button' disabled='false'>Ещё</button>
+        <button className='movies-card-list__more-btn' type='button' disabled={false}>Ещё</button>
       </div>
     </>
   );

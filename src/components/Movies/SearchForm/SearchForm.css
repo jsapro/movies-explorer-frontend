@@ -37,6 +37,7 @@
     background-image: url('../../../images/search-btn.svg');
     background-repeat: no-repeat;
     border: none;
+    cursor: pointer;
 }
 
 @media all and (min-width: 768px) {

@@ -25,6 +25,7 @@
     border-radius: 5px;
     min-width: 240px;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 @media all and (min-width: 768px) {

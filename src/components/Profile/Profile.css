@@ -90,6 +90,7 @@
     font-size: 12px;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
 }
 
 .profile__logout-btn {
@@ -101,6 +102,7 @@
     font-size: 12px;
     font-weight: 500;
     line-height: normal;
+    cursor: pointer;
 }
 
 
@@ -114,6 +116,7 @@
     line-height: normal;
     border: none;
     padding: 15px 0;
+    cursor: pointer;
 }
 
 @media all and (min-width:768px) {

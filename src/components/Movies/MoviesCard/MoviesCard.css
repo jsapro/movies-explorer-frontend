@@ -30,6 +30,7 @@
     border: none;
     height: 21px;
     background: transparent;
+    cursor: pointer;
 }
 
 .movies-card__btn_type_normal {

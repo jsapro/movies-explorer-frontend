@@ -6,18 +6,18 @@ const MoviesCard = () => {
 
 
   // =======================================
-  const [movieList, setMovieList] = useState([]);
+  // const [movieList, setMovieList] = useState([]);
 
-  useEffect(() => {
-    fetch('https://api.nomoreparties.co/beatfilm-movies')
-      .then((data) => data.json())
-      .then((data) => {
-        setMovieList(data);
-      })
-      .catch((err) => console.log(`ошибка fetch запроса: ${err.message}`));
-  }, []);
+  // useEffect(() => {
+  //   fetch('https://api.nomoreparties.co/beatfilm-movies')
+  //     .then((data) => data.json())
+  //     .then((data) => {
+  //       setMovieList(data);
+  //     })
+  //     .catch((err) => console.log(`ошибка fetch запроса: ${err.message}`));
+  // }, []);
 
-  console.log('movieList', movieList[10]);
+  // console.log('movieList', movieList[10]);
   // =======================================
 
   const fotoUrl =
