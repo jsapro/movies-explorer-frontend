@@ -73,59 +73,62 @@ const Navigation = () => {
 
   const getBurgerNav = () => {
     return (
-      <section className='nav-burger nav-burger_opened'>
-        <div className='nav-burger__container'>
-          <button className='nav-burger__close-btn' />
-          <nav>
-            <ul className='nav-burger__list'>
-              <li className='nav-burger__item'>
-                <NavLink
-                  to='/'
-                  className={({ isActive }) =>
-                    `nav-burger__link ${
-                      isActive && 'nav-burger__link_type_active'
-                    }`
-                  }
-                >
-                  Главная
-                </NavLink>
-              </li>
-              <li className='nav-burger__item'>
-                <NavLink
-                  to='/movies'
-                  className={({ isActive }) =>
-                    `nav-burger__link ${
-                      isActive && 'nav-burger__link_type_active'
-                    }`
-                  }
-                >
-                  Фильмы
-                </NavLink>
-              </li>
-              <li className='nav-burger__item'>
-                <NavLink
-                  to='/saved-movies'
-                  className={({ isActive }) =>
-                    `nav-burger__link ${
-                      isActive && 'nav-burger__link_type_active'
-                    }`
-                  }
-                >
-                  Сохранённые фильмы
-                </NavLink>
-              </li>
-              <li className='nav-burger__item'>
-                <NavLink
-                  to='/profile'
-                  className='nav-burger__link nav-burger__link_type_special'
-                >
-                  Аккаунт
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      </section>
+      <>
+        <button className='nav-burget-btn' />
+        <section className='nav-burger nav-burger_opened'>
+          <div className='nav-burger__container'>
+            <button className='nav-burger__close-btn' />
+            <nav>
+              <ul className='nav-burger__list'>
+                <li className='nav-burger__item'>
+                  <NavLink
+                    to='/'
+                    className={({ isActive }) =>
+                      `nav-burger__link ${
+                        isActive && 'nav-burger__link_type_active'
+                      }`
+                    }
+                  >
+                    Главная
+                  </NavLink>
+                </li>
+                <li className='nav-burger__item'>
+                  <NavLink
+                    to='/movies'
+                    className={({ isActive }) =>
+                      `nav-burger__link ${
+                        isActive && 'nav-burger__link_type_active'
+                      }`
+                    }
+                  >
+                    Фильмы
+                  </NavLink>
+                </li>
+                <li className='nav-burger__item'>
+                  <NavLink
+                    to='/saved-movies'
+                    className={({ isActive }) =>
+                      `nav-burger__link ${
+                        isActive && 'nav-burger__link_type_active'
+                      }`
+                    }
+                  >
+                    Сохранённые фильмы
+                  </NavLink>
+                </li>
+                <li className='nav-burger__item'>
+                  <NavLink
+                    to='/profile'
+                    className='nav-burger__link nav-burger__link_type_special'
+                  >
+                    Аккаунт
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </section>
+      </>
     );
   };
 
