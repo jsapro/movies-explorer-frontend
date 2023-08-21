@@ -1,9 +1,18 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Navigation.css';
 
 const Navigation = () => {
+  console.log(window.innerWidth);
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+  const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 768);
+
+  window.addEventListener('resize', () => {
+    setIsMobileMode(window.innerWidth <= 768);
+  });
+
+  const isAuthorized = true;
+  // const isAuthorized = false;
 
   const openBurger = () => {
     setIsBurgerOpen(true);
@@ -12,14 +21,6 @@ const Navigation = () => {
   const closeBurger = () => {
     setIsBurgerOpen(false);
   };
-
-  console.log(isBurgerOpen);
-
-  const isMobileMode = window.innerWidth <= 768;
-  console.log(isMobileMode);
-
-  const isAuthorized = true;
-  // const isAuthorized = false;
 
   const getGuestNav = () => {
     return (
@@ -96,6 +97,7 @@ const Navigation = () => {
               <ul className='nav-burger__list'>
                 <li className='nav-burger__item'>
                   <NavLink
+                    onClick={closeBurger}
                     to='/'
                     className={({ isActive }) =>
                       `nav-burger__link ${
@@ -108,6 +110,7 @@ const Navigation = () => {
                 </li>
                 <li className='nav-burger__item'>
                   <NavLink
+                    onClick={closeBurger}
                     to='/movies'
                     className={({ isActive }) =>
                       `nav-burger__link ${
@@ -120,6 +123,7 @@ const Navigation = () => {
                 </li>
                 <li className='nav-burger__item'>
                   <NavLink
+                    onClick={closeBurger}
                     to='/saved-movies'
                     className={({ isActive }) =>
                       `nav-burger__link ${
@@ -132,6 +136,7 @@ const Navigation = () => {
                 </li>
                 <li className='nav-burger__item'>
                   <NavLink
+                    onClick={closeBurger}
                     to='/profile'
                     className='nav-burger__link nav-burger__link_type_special'
                   >
