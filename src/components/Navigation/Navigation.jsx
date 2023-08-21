@@ -6,18 +6,28 @@ const Navigation = () => {
   const isMobileMode = window.innerWidth <= 768;
   console.log(isMobileMode);
 
-  const isAuthorized = true;
-  // const isAuthorized = false;
+  // const isAuthorized = true;
+  const isAuthorized = false;
 
   const getGuestNav = () => {
     return (
       <nav className='nav-guest'>
         <ul className='nav-guest__list'>
-          <li className='nav-guest__register'>
-            <Link>Регистрация</Link>
+          <li>
+            <Link
+              to='/signup'
+              className='nav-guest__link nav-guest__link_type_register'
+            >
+              Регистрация
+            </Link>
           </li>
-          <li className='nav-guest__login'>
-            <Link>Войти</Link>
+          <li>
+            <Link
+              to='/signin'
+              className='nav-guest__link nav-guest__link_type_login'
+            >
+              Войти
+            </Link>
           </li>
         </ul>
       </nav>
