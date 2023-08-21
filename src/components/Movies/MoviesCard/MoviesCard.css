@@ -1,7 +1,7 @@
 .movies-card {
     list-style: none;
     background-color: #202020;
-    padding: 40px 0 0;
+    padding: 38px 0 0;
     position: relative;
 }
 
@@ -81,7 +81,7 @@
     line-height: 10px;
     border-radius: 3px;
     background: #2F2F2F;
-    padding: 3px 4px;
+    padding: 3px 9px;
 }
 
 @media all and (min-width:768px) {
