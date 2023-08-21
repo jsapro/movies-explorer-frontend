@@ -72,7 +72,7 @@
     .techs__title {
         font-size: 22px;
         letter-spacing: -0.88px;
-        padding: 0 0 23px 0;
+        padding: 0 0 26px 0;
         border-bottom: 1px solid #DADADA;
     }
 
@@ -121,8 +121,13 @@
     }
 
     .techs__list {
-        padding: 100px 0 0 0;
+        padding: 102px 0 0 0;
         grid-template-columns: repeat(7, 90px);
+    }
+
+    .techs__item {
+        font-size: 14px;
+        letter-spacing: -0.56px;
     }
 
 }

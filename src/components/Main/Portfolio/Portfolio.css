@@ -89,7 +89,7 @@
     }
 
     .portfolio__item:not(:last-of-type) {
-        padding-bottom: 19px;
+        padding-bottom: 9px;
         border-bottom: 1px solid #424242;
     }
 

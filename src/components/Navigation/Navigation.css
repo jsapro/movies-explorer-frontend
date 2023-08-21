@@ -21,15 +21,12 @@
     font-size: 10px;
 }
 
-.nav-guest__link:first-of-type {
-    padding-right: 14px;
-}
-
 .nav-guest__link_type_login {
     padding: 5px 12px;
     color: #000;
     border-radius: 3px;
     background: #3DDC84;
+    padding-right: 14px;
 }
 
 .nav-guest__link_type_register {
@@ -37,24 +34,17 @@
 }
 
 @media screen and (min-width: 768px) {
-    .nav-guest__link:first-of-type {
-        padding-right: 30px;
+    .nav-guest__link {
         font-size: 12px;
     }
 
-    .nav-guest__link_type_login {
-        padding: 8px 20px;
-    }
-
-    /* .nav-guest__link_type_register {
-        font-size: 12px;
+    .nav-guest__link_type_register {
         padding-right: 30px;
     }
 
     .nav-guest__link_type_login {
         padding: 8px 20px;
-        font-size: 12px;
-    } */
+    }
 }
 
 /* Стили для навигации в хэдере для зарегистрированного пользователя и экрана больше 768 px  ======================*/
