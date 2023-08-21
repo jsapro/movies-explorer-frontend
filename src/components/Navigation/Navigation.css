@@ -26,11 +26,11 @@
     color: #000;
     border-radius: 3px;
     background: #3DDC84;
-    padding-right: 14px;
 }
 
 .nav-guest__link_type_register {
     color: #FFF;
+    padding-right: 14px;
 }
 
 @media screen and (min-width: 768px) {

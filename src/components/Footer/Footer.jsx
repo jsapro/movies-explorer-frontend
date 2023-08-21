@@ -30,7 +30,7 @@ const Footer = () => {
             </li>
           </ul>
         </nav>
-        <p className='footer__copyright'>© {new Date().getFullYear()}</p>
+        <p className='footer__copyright'>©{new Date().getFullYear()}</p>
       </div>
     </footer>
   );

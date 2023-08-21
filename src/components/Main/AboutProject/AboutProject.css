@@ -3,7 +3,7 @@
 }
 
 .about-project__title {
-    padding: 0 0 28px 0;
+    padding: 0 0 29px 0;
     font-size: 18px;
     font-weight: 400;
     line-height: normal;
@@ -14,7 +14,6 @@
 .about-project__description-list {
     display: flex;
     flex-direction: column;
-    gap: 48px;
 }
 
 .list {
@@ -32,18 +31,18 @@
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.72px;
-    padding: 60px 0 0 0;
+    padding: 59px 0 0 0;
 }
 
 .about-project__description-text {
     font-size: 11px;
     font-weight: 400;
     line-height: 16px;
-    padding: 16px 0 0 0;
+    padding: 18px 0 0 0;
 }
 
 .about-project__duration {
-    padding: 60px 0 0 0;
+    padding: 57px 0 0 0;
 }
 
 .about-project__duration-list {
@@ -83,8 +82,9 @@
     }
 
     .about-project__description-list {
-        display: flex;
         flex-direction: row;
+        gap: 40px;
+
     }
 
     .about-project__description-title {
@@ -96,7 +96,11 @@
     .about-project__description-text {
         font-size: 12px;
         line-height: 18px;
-        padding: 22px 20px 0 0;
+        padding: 23px 0 0 0;
+    }
+
+    .about-project__duration {
+        padding: 93px 0 0 0;
     }
 
     .about-project__title {
@@ -141,7 +145,7 @@
     .about-project__description-text {
         font-size: 14px;
         line-height: 20px;
-        padding: 26px 50px 0 0;
+        /* padding: 26px 50px 0 0; */
     }
 
     .about-project__duration {
@@ -154,5 +158,9 @@
 
     .about-project__duration-text {
         color: #8B8B8B;
+    }
+
+    .about-project__description-list {
+        gap: 48px;
     }
 }
