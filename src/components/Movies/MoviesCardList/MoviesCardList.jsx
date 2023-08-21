@@ -11,6 +11,12 @@ const MoviesCardList = () => {
         <MoviesCard />
         <MoviesCard />
         <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
+        <MoviesCard />
       </ul>
 
       <div className='movies-card-list__btn-container'>

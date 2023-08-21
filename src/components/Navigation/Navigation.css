@@ -60,16 +60,11 @@
     list-style: none;
 }
 
-.nav-desktop__item {
-    padding: 28px 0;
-}
-
 .nav-desktop__item:first-of-type {
     padding-right: 16px;
 }
 
 .nav-desktop__item_type_special {
-    padding: 28px 0;
     align-self: flex-end;
     margin-left: auto;
 }
