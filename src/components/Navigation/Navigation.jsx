@@ -6,8 +6,8 @@ const Navigation = () => {
   const isMobileMode = window.innerWidth <= 768;
   console.log(isMobileMode);
 
-  // const isAuthorized = true;
-  const isAuthorized = false;
+  const isAuthorized = true;
+  // const isAuthorized = false;
 
   const getGuestNav = () => {
     return (
