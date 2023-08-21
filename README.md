@@ -1,3 +1,7 @@
+
+# Сверстано по макету 'dark-2'   [(сылка на архив)](https://dropmefiles.com/steSQ)
+ [(сылка на архив)](https://wdfiles.ru/LK1w)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
