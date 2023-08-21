@@ -52,7 +52,7 @@ const MoviesCard = () => {
           type='button'
         />
         <Link className='movies-card__link' to='#' target='_blank'>
-          <img className='movies-card__img' src={fotoUrl} alt='' />
+          <img className='movies-card__img' src={fotoUrl} alt='карточка фильма' />
         </Link>
       </div>
       <div className='movies-card__caption'>
