@@ -38,6 +38,11 @@
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.search-form__button:hover {
+    transform: scale(1.07);
 }
 
 @media all and (min-width: 768px) {
