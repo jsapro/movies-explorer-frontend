@@ -17,6 +17,7 @@
     object-fit: cover;
     width: 100%;
     min-height: 168px;
+    aspect-ratio: 1.784;
 }
 
 .movies-card__link {

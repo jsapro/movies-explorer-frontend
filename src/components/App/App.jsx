@@ -17,6 +17,11 @@ const App = () => {
   const moviesApi = new MoviesApi(BEATFILMMOVIES_URL);
   const mainApi = new MainApi(MAIN_BACKEND_URL);
 
+
+  useEffect(() => {
+    moviesApi.getInitialMovies().then(initialMovies => localStorage.setItem('initialMovies', JSON.stringify(initialMovies)))
+  }, [])
+
   // useEffect(() => {
   //   const register = () => {
   //     return mainApi.register('name-032', 'test-032@test.com', 'password-032');
