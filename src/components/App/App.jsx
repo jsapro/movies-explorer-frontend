@@ -25,7 +25,6 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-
   useEffect(() => {
     handleTokenCheck();
   }, []);
@@ -67,7 +66,6 @@ const App = () => {
             JSON.stringify(combinedMoviesArray)
           );
           setCombinedMoviesArray(combinedMoviesArray);
-
           return combinedMoviesArray;
         })
         .catch((err) => console.log(`Ошибка Promise.all: ${err.message}`));
@@ -110,17 +108,30 @@ const App = () => {
   // updateUserInfo()
 
   const handleSaveMovie = (movie) => {
-    return mainApi.saveMovie(movie)
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
+    return mainApi
+      .saveMovie(movie)
+      .then((savedMovie) => {
+        const updatedMoviesArray = combinedMoviesArray.map((oldMovie) => {
+          if (oldMovie.id === savedMovie.data.movieId) {
+            oldMovie._id = savedMovie.data._id;
+            oldMovie.thumbnail = savedMovie.data.thumbnail;
+            oldMovie.image = savedMovie.data.image;
+          }
+          return oldMovie;
+        });
+        setCombinedMoviesArray(updatedMoviesArray);
+        localStorage.setItem(
+          'combinedMoviesArray',
+          JSON.stringify(combinedMoviesArray)
+        );
+      })
+      .catch((err) => console.log(err));
   };
-
-  // handleSaveMovie()
 
   const handleDeleteMovie = (id) => {
     return mainApi
       .deleteMovie(id)
-      .then((data) => console.log(data))
+      .then((movie) => console.log(movie.data))
       .catch((err) => console.log(err));
   };
 

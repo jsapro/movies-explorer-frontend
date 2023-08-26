@@ -22,10 +22,6 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
     if (location.pathname === '/saved-movies') return () => {};
     if (checkIsMovieSaved()) return onDeleteMovie(savedMovie);
     return onSaveMovie(movie)
-      .then((movie) => {
-        setSavedMovie(movie.data);
-      })
-      .catch((err) => console.log(err));
   };
 
   const getBtnClassName = () => {
