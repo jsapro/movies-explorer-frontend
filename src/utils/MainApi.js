@@ -1,3 +1,5 @@
+import { BASIC_MOVIES_URL } from './constants';
+
 class MainApi {
   constructor(baseUrl) {
     this._baseUrl = baseUrl;
@@ -11,7 +13,6 @@ class MainApi {
   }
 
   _checkResponse(res) {
-    console.log(res);
     if (res.ok) {
       return res.json();
     }
@@ -26,8 +27,6 @@ class MainApi {
       },
       ...options,
     };
-    console.log('params', params);
-
     return fetch(`${this._baseUrl}/${endPoint}`, params).then(
       this._checkResponse
     );
@@ -93,7 +92,7 @@ class MainApi {
     });
   }
 
-  postMovie() {
+  saveMovie(movie) {
     return this._request('movies/', {
       method: 'POST',
       headers: {
@@ -101,19 +100,17 @@ class MainApi {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        country: 'country-006',
-        director: 'director-006',
-        duration: '300',
-        year: '2000',
-        description: 'aaa-006',
-        image:
-          'https://cdn.stocksnap.io/img-thumbs/960w/autumn-woods_6A4IBKIYJI.jpg',
-        trailerLink: 'https://www.youtube.com',
-        thumbnail:
-          'https://cdn.stocksnap.io/img-thumbs/960w/autumn-woods_6A4IBKIYJI.jpg',
-        movieId: '003',
-        nameRU: 'nameRU-003',
-        nameEN: 'nameEN-003',
+        country: movie.country,
+        director: movie.director,
+        duration: movie.duration,
+        year: movie.year,
+        description: movie.description,
+        image: BASIC_MOVIES_URL + movie.image.url,
+        trailerLink: movie.trailerLink,
+        thumbnail: BASIC_MOVIES_URL + movie.image.formats.thumbnail.url,
+        movieId: movie.id,
+        nameRU: movie.nameRU,
+        nameEN: movie.nameEN,
       }),
     });
   }

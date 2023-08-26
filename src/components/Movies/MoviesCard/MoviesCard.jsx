@@ -3,23 +3,36 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BASIC_MOVIES_URL } from '../../../utils/constants';
 
-const MoviesCard = ({ movie }) => {
+const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie, savedMovies }) => {
+
+  const [isSaved, setIsSaved] = useState();
+  const [savedMovie, setSavedMovie] = useState('');
+
   const location = useLocation();
 
   // const isSaved = true;
-  const isSaved = false;
+  // const isSaved = false;
 
   const getMovieDuration = () => {
     if (movie?.duration <= 40) return `${movie?.duration}м`;
-    const hours = (movie?.duration / 60);
+    const hours = movie?.duration / 60;
     const minutes = movie?.duration % 60;
     return `${hours.toFixed()}ч ${minutes}м`;
   };
 
   const handleBtnClick = () => {
     if (location.pathname === '/saved-movies') return () => {};
-    if (isSaved) return () => {};
-    return () => {};
+    if (isSaved) {
+      onDeleteMovie(savedMovie);
+      return setIsSaved(false);
+    }
+    setIsSaved(true);
+    return onSaveMovie(movie)
+      .then((movie) => {
+        setSavedMovie(movie.data);
+        setIsSaved(true);
+      })
+      .catch((err) => console.log(err));
   };
 
   const getBtnClassName = () => {

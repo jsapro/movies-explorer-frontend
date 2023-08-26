@@ -16,11 +16,18 @@ import './App.css';
 const App = () => {
   const moviesApi = new MoviesApi(BEATFILMMOVIES_URL);
   const mainApi = new MainApi(MAIN_BACKEND_URL);
+  const [savedMovies, setSavedMovies] = useState([]);
 
+  const isLoggedIn = true;
+  // const isLoggedIn = false;
 
   useEffect(() => {
-    moviesApi.getInitialMovies().then(initialMovies => localStorage.setItem('initialMovies', JSON.stringify(initialMovies)))
-  }, [])
+    moviesApi
+      .getInitialMovies()
+      .then((initialMovies) =>
+        localStorage.setItem('initialMovies', JSON.stringify(initialMovies))
+      );
+  }, [isLoggedIn]);
 
   // useEffect(() => {
   //   const register = () => {
@@ -41,46 +48,61 @@ const App = () => {
   // };
   // getUserInfo().catch(err => console.log(err))
 
-  // const updateUser = () => {
+  // const updateUserInfo = () => {
   //   return mainApi
   //     .updateUserInfo('name-032-new', 'test-032-new@test.com')
   //     .then((data) => console.log(data))
   //     .catch((err) => console.log(err));
   // };
 
-  // updateUser()
+  // updateUserInfo()
+  
+  useEffect(() => {
+    getMoviesfromServer().then(movies => setSavedMovies(movies))
+  }, []);
 
-  // const getMoviesFromServer = () => {
-  //   return mainApi
-  //     .getMovies()
-  //     .then((data) => console.log(data)).catch((err) => console.log(err));
-  // };
+  
+  const getMoviesfromServer = () => {
+    return mainApi
+    .getMovies()
+    .then((movies) => console.log('MoviesfromServer', movies.data))
+    .catch((err) => console.log(err));
+  };
+  
+  // getMoviesfromServer()
 
-  // getMoviesFromServer()
+  const handleSaveMovie = (movie) => {
+    return mainApi.saveMovie(movie);
+    // .then((data) => console.log(data))
+    // .catch((err) => console.log(err));
+  };
 
-  // const postMovie = () => {
-  //   return mainApi
-  //     .postMovie()
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.log(err));
-  // };
+  // handleSaveMovie()
 
-  // postMovie()
+  const handleDeleteMovie = (id) => {
+    return mainApi
+      .deleteMovie(id)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
 
-  // const deleteMovie = () => {
-  //   return mainApi.deleteMovie('64e731b9be04b3798e51e57e')
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.log(err));
-  // };
-
-  // deleteMovie()
+  // handleDeleteMovie()
 
   return (
     <>
       <div className='page'>
         <Routes>
           <Route path='/' element={<Main />} />
-          <Route path='/movies' element={<Movies />} />
+          <Route
+            path='/movies'
+            element={
+              <Movies
+              onSaveMovie={handleSaveMovie}
+              onDeleteMovie={handleDeleteMovie}
+              savedMovies={savedMovies}
+              />
+            }
+            />
           <Route path='/saved-movies' element={<SavedMovies />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/signin' element={<Login />} />
