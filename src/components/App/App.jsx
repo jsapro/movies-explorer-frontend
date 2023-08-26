@@ -131,11 +131,21 @@ const App = () => {
   const handleDeleteMovie = (id) => {
     return mainApi
       .deleteMovie(id)
-      .then((movie) => console.log(movie.data))
+      .then((deletedMovie) => {
+        const updatedMoviesArray = combinedMoviesArray.map((oldMovie) => {
+          if (oldMovie._id === deletedMovie.data._id) {
+            oldMovie._id = '';
+          }
+          return oldMovie;
+        });
+        setCombinedMoviesArray(updatedMoviesArray);
+        localStorage.setItem(
+          'combinedMoviesArray',
+          JSON.stringify(updatedMoviesArray)
+        );
+      })
       .catch((err) => console.log(err));
   };
-
-  // handleDeleteMovie()
 
   return (
     <>
@@ -154,7 +164,7 @@ const App = () => {
           />
           <Route
             path='/saved-movies'
-            element={<SavedMovies combinedMoviesArray={combinedMoviesArray} />}
+            element={<SavedMovies onDeleteMovie={handleDeleteMovie} combinedMoviesArray={combinedMoviesArray} />}
           />
           <Route path='/profile' element={<Profile />} />
           <Route path='/signin' element={<Login />} />

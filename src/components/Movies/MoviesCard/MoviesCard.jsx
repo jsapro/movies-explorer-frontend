@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
-  const [savedMovie, setSavedMovie] = useState('');
-
   const location = useLocation();
   const checkIsMovieSaved = () => {
     if (movie._id !== '') return true;
@@ -19,14 +17,19 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
   };
 
   const handleBtnClick = () => {
-    if (location.pathname === '/saved-movies') return () => {};
-    if (checkIsMovieSaved()) return onDeleteMovie(savedMovie);
-    return onSaveMovie(movie)
+    if (location.pathname === '/saved-movies') {
+      return onDeleteMovie(movie._id);
+    }
+    if (checkIsMovieSaved()) {
+      return onDeleteMovie(movie._id);
+    }
+    return onSaveMovie(movie);
   };
 
   const getBtnClassName = () => {
-    if (location.pathname === '/saved-movies')
+    if (location.pathname === '/saved-movies') {
       return 'movies-card__btn_type_collection';
+    }
 
     if (checkIsMovieSaved()) return 'movies-card__btn_type_active';
 
