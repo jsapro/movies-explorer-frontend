@@ -1,16 +1,13 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-const MoviesCardList = ({ onSaveMovie, onDeleteMovie, savedMovies }) => {
-  const initialFilmsToRender = JSON.parse(
-    localStorage.getItem('initialMovies')
-  );
+const MoviesCardList = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
 
   return (
     <>
       <ul className='movies-card-list'>
-        {initialFilmsToRender.map((movie, i) => {
-          return <MoviesCard key={movie.id} movie={movie} onSaveMovie={onSaveMovie} onDeleteMovie={onDeleteMovie} savedMovies={savedMovies} />;
+        {combinedMoviesArray.map((movie, i) => {
+          return <MoviesCard key={movie.id} movie={movie} onSaveMovie={onSaveMovie} onDeleteMovie={onDeleteMovie} />;
         })}
       </ul>
 

@@ -4,13 +4,13 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 
-const SavedMovies = () => {
+const SavedMovies = ({combinedMoviesArray}) => {
   return (
     <>
       <Header />
       <main>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList combinedMoviesArray={combinedMoviesArray} />
       </main>
       <Footer />
     </>

@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 
-const Movies = ({ onSaveMovie, onDeleteMovie, savedMovies }) => {
+const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
 
 
 
@@ -13,7 +13,7 @@ const Movies = ({ onSaveMovie, onDeleteMovie, savedMovies }) => {
       <Header />
       <main>
         <SearchForm />
-        <MoviesCardList onSaveMovie={onSaveMovie} onDeleteMovie={onDeleteMovie} savedMovies={savedMovies} />
+        <MoviesCardList onSaveMovie={onSaveMovie} onDeleteMovie={onDeleteMovie} combinedMoviesArray={combinedMoviesArray} />
       </main>
       <Footer />
     </>

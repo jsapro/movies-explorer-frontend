@@ -9,25 +9,77 @@ import Register from '../Register/Register';
 import Page404 from '../Page404/Page404';
 import MoviesApi from '../../utils/MoviesApi';
 import MainApi from '../../utils/MainApi';
-import { BEATFILMMOVIES_URL, MAIN_BACKEND_URL } from '../../utils/constants';
+import {
+  BEATFILMMOVIES_URL,
+  BASIC_MOVIES_URL,
+  MAIN_BACKEND_URL,
+} from '../../utils/constants';
 
 import './App.css';
 
 const App = () => {
   const moviesApi = new MoviesApi(BEATFILMMOVIES_URL);
   const mainApi = new MainApi(MAIN_BACKEND_URL);
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [combinedMoviesArray, setCombinedMoviesArray] = useState([]);
+  const [userData, setUserData] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
 
-  const isLoggedIn = true;
-  // const isLoggedIn = false;
 
   useEffect(() => {
-    moviesApi
-      .getInitialMovies()
-      .then((initialMovies) =>
-        localStorage.setItem('initialMovies', JSON.stringify(initialMovies))
-      );
+    handleTokenCheck();
+  }, []);
+
+  const handleTokenCheck = () => {
+    if (localStorage.getItem('jwt')) {
+      mainApi.getUserInfo().then((user) => {
+        if (user.data._id) {
+          setUserData(user.data);
+          setIsLoggedIn(true);
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      Promise.all([moviesApi.getInitialMovies(), mainApi.getMovies()])
+        .then(([initialMovies, savedMovies]) => {
+          const combinedMoviesArray = initialMovies.map((initialMovie) => {
+            const savedMovie = savedMovies.data.find((savedMovieItem) => {
+              return savedMovieItem.movieId === initialMovie.id;
+            });
+
+            initialMovie.thumbnail =
+              BASIC_MOVIES_URL + initialMovie.image.formats.thumbnail.url;
+            initialMovie.image = BASIC_MOVIES_URL + initialMovie.image.url;
+
+            if (savedMovie !== undefined) {
+              initialMovie._id = savedMovie._id;
+            } else {
+              initialMovie._id = '';
+            }
+
+            return initialMovie;
+          });
+          localStorage.setItem(
+            'combinedMoviesArray',
+            JSON.stringify(combinedMoviesArray)
+          );
+          setCombinedMoviesArray(combinedMoviesArray);
+
+          return combinedMoviesArray;
+        })
+        .catch((err) => console.log(`Ошибка Promise.all: ${err.message}`));
+    }
   }, [isLoggedIn]);
+
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+    localStorage.removeItem('jwt');
+    localStorage.removeItem('combinedMoviesArray');
+    navigate('/', { replace: true });
+  };
 
   // useEffect(() => {
   //   const register = () => {
@@ -56,25 +108,11 @@ const App = () => {
   // };
 
   // updateUserInfo()
-  
-  useEffect(() => {
-    getMoviesfromServer().then(movies => setSavedMovies(movies))
-  }, []);
-
-  
-  const getMoviesfromServer = () => {
-    return mainApi
-    .getMovies()
-    .then((movies) => console.log('MoviesfromServer', movies.data))
-    .catch((err) => console.log(err));
-  };
-  
-  // getMoviesfromServer()
 
   const handleSaveMovie = (movie) => {
-    return mainApi.saveMovie(movie);
-    // .then((data) => console.log(data))
-    // .catch((err) => console.log(err));
+    return mainApi.saveMovie(movie)
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
   };
 
   // handleSaveMovie()
@@ -97,13 +135,16 @@ const App = () => {
             path='/movies'
             element={
               <Movies
-              onSaveMovie={handleSaveMovie}
-              onDeleteMovie={handleDeleteMovie}
-              savedMovies={savedMovies}
+                onSaveMovie={handleSaveMovie}
+                onDeleteMovie={handleDeleteMovie}
+                combinedMoviesArray={combinedMoviesArray}
               />
             }
-            />
-          <Route path='/saved-movies' element={<SavedMovies />} />
+          />
+          <Route
+            path='/saved-movies'
+            element={<SavedMovies combinedMoviesArray={combinedMoviesArray} />}
+          />
           <Route path='/profile' element={<Profile />} />
           <Route path='/signin' element={<Login />} />
           <Route path='/signup' element={<Register />} />

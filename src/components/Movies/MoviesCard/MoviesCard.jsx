@@ -1,17 +1,15 @@
 import './MoviesCard.css';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BASIC_MOVIES_URL } from '../../../utils/constants';
 
-const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie, savedMovies }) => {
-
-  const [isSaved, setIsSaved] = useState();
+const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
   const [savedMovie, setSavedMovie] = useState('');
 
   const location = useLocation();
-
-  // const isSaved = true;
-  // const isSaved = false;
+  const checkIsMovieSaved = () => {
+    if (movie._id !== '') return true;
+    return false;
+  };
 
   const getMovieDuration = () => {
     if (movie?.duration <= 40) return `${movie?.duration}м`;
@@ -22,15 +20,10 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie, savedMovies }) => {
 
   const handleBtnClick = () => {
     if (location.pathname === '/saved-movies') return () => {};
-    if (isSaved) {
-      onDeleteMovie(savedMovie);
-      return setIsSaved(false);
-    }
-    setIsSaved(true);
+    if (checkIsMovieSaved()) return onDeleteMovie(savedMovie);
     return onSaveMovie(movie)
       .then((movie) => {
         setSavedMovie(movie.data);
-        setIsSaved(true);
       })
       .catch((err) => console.log(err));
   };
@@ -39,7 +32,7 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie, savedMovies }) => {
     if (location.pathname === '/saved-movies')
       return 'movies-card__btn_type_collection';
 
-    if (isSaved) return 'movies-card__btn_type_active';
+    if (checkIsMovieSaved()) return 'movies-card__btn_type_active';
 
     return 'movies-card__btn_type_normal';
   };
@@ -54,18 +47,18 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie, savedMovies }) => {
         />
         <Link
           className='movies-card__link'
-          to={movie?.trailerLink}
+          to={movie.trailerLink}
           target='_blank'
         >
           <img
             className='movies-card__img'
-            src={`${BASIC_MOVIES_URL}${movie?.image?.url}`}
+            src={movie.image}
             alt='карточка фильма'
           />
         </Link>
       </div>
       <div className='movies-card__caption'>
-        <h2 className='movies-card__name'>{movie?.nameRU}</h2>
+        <h2 className='movies-card__name'>{movie.nameRU}</h2>
         <p className='movies-card__duration'>{getMovieDuration()}</p>
       </div>
     </li>
