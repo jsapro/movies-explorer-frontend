@@ -1,20 +1,39 @@
 import './SearchForm.css';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
+import useFormWithValidation from '../../../hooks/useFormWithValidation';
 
-const SearchForm = () => {
+const SearchForm = ({ onSearch, onCheck, checkboxState, isShortMovies }) => {
+  const { values, handleChange, errors, isValid } = useFormWithValidation();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onSearch(values.searchInput, isShortMovies);
+  };
+
   return (
     <section className='search-form'>
-      <form className='search-form__form'>
+      <form
+        onSubmit={handleSubmit}
+        className='search-form__form'
+        name='searchForm'
+      >
         <div className='search-form__container'>
           <input
+            onChange={handleChange}
+            value={values.searchInput ? values.searchInput : ''}
             className='search-form__input'
             placeholder='Фильм'
             type='text'
+            name='searchInput'
             required
           />
-          <button className='search-form__button' type='submit'></button>
+          <button
+            className='search-form__button'
+            type='submit'
+            disabled={!isValid}
+          ></button>
         </div>
-        <FilterCheckbox />
+        <FilterCheckbox onCheck={onCheck} checkboxState={checkboxState} />
       </form>
     </section>
   );
