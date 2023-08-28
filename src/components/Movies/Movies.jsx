@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
+import { filter } from '../../utils/constants';
 
 const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
   const [isShortMovies, setIsShortMovies] = useState(false);
@@ -18,17 +19,11 @@ const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
 
   const handleSubmitSearch = (searchString, isShortMovies) => {
     setSearchString(searchString);
-    const filteredMoviesArray = combinedMoviesArray.filter((movie) => {
-
-      const matchedSearch = movie.nameRU
-        .trim()
-        .toLowerCase()
-        .includes(searchString.trim().toLowerCase());
-
-      return isShortMovies
-        ? movie.duration <= 40 && matchedSearch
-        : matchedSearch;
-    });
+    const filteredMoviesArray = filter(
+      combinedMoviesArray,
+      searchString,
+      isShortMovies
+    );
     setFilteredMoviesArray(filteredMoviesArray);
     return filteredMoviesArray;
   };
