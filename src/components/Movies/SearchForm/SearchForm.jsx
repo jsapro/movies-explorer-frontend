@@ -2,7 +2,7 @@ import './SearchForm.css';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 import useFormWithValidation from '../../../hooks/useFormWithValidation';
 
-const SearchForm = ({ onSearch, onCheck, checkboxState, isShortMovies }) => {
+const SearchForm = ({ onSearch, onCheck, isShortMovies }) => {
   const { values, handleChange, errors, isValid } = useFormWithValidation();
 
   const handleSubmit = (e) => {
@@ -33,7 +33,7 @@ const SearchForm = ({ onSearch, onCheck, checkboxState, isShortMovies }) => {
             disabled={!isValid}
           ></button>
         </div>
-        <FilterCheckbox onCheck={onCheck} checkboxState={checkboxState} />
+        <FilterCheckbox onCheck={onCheck} isShortMovies={isShortMovies} />
       </form>
     </section>
   );

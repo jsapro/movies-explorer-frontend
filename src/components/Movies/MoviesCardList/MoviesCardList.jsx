@@ -1,12 +1,12 @@
 import './MoviesCardList.css';
 import MoviesCard from '../MoviesCard/MoviesCard';
 
-const MoviesCardList = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
+const MoviesCardList = ({ onSaveMovie, onDeleteMovie, filteredMoviesArray }) => {
 
   return (
     <>
       <ul className='movies-card-list'>
-        {combinedMoviesArray.map((movie, i) => {
+        {filteredMoviesArray.map((movie, i) => {
           return <MoviesCard key={movie.id} movie={movie} onSaveMovie={onSaveMovie} onDeleteMovie={onDeleteMovie} />;
         })}
       </ul>

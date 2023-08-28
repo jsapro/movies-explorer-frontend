@@ -40,12 +40,10 @@ const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
           onSearch={handleSubmitSearch}
           isShortMovies={isShortMovies}
           onCheck={handleCheckBox}
-          checkboxState={isShortMovies}
         />
         <MoviesCardList
           onSaveMovie={onSaveMovie}
           onDeleteMovie={onDeleteMovie}
-          combinedMoviesArray={filteredMoviesArray}
           filteredMoviesArray={filteredMoviesArray}
         />
       </main>
