@@ -15,7 +15,6 @@ class MoviesApi {
           new Error(`Ошибка получения фильмов с сервера: ${res.status}`)
         );
       })
-      .catch((err) => console.log(err.message));
   }
 }
 

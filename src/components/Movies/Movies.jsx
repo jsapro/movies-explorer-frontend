@@ -6,7 +6,13 @@ import SearchForm from './SearchForm/SearchForm';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
 import { filter } from '../../utils/constants';
 
-const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
+const Movies = ({
+  onSaveMovie,
+  onDeleteMovie,
+  setCombinedMoviesArray,
+  onSearch,
+  serverResponceError
+}) => {
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [filteredMoviesArray, setFilteredMoviesArray] = useState([]);
   const [searchString, setSearchString] = useState('');
@@ -19,12 +25,17 @@ const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
 
   const handleSubmitSearch = (searchString, isShortMovies) => {
     setSearchString(searchString);
-    const filteredMoviesArray = filter(
-      combinedMoviesArray,
-      searchString,
-      isShortMovies
-    );
-    setFilteredMoviesArray(filteredMoviesArray);
+    onSearch().then((combinedMoviesArray) => {
+      setCombinedMoviesArray(combinedMoviesArray)
+      const filteredMoviesArray = filter(
+        combinedMoviesArray,
+        searchString,
+        isShortMovies
+      );
+      setFilteredMoviesArray(filteredMoviesArray);
+      return filteredMoviesArray;
+    }).catch(err => console.log(err))
+
     return filteredMoviesArray;
   };
 
@@ -42,6 +53,7 @@ const Movies = ({ onSaveMovie, onDeleteMovie, combinedMoviesArray }) => {
           onCheck={handleCheckBox}
         />
         <MoviesCardList
+          serverResponceError={serverResponceError}
           onSaveMovie={onSaveMovie}
           onDeleteMovie={onDeleteMovie}
           filteredMoviesArray={filteredMoviesArray}

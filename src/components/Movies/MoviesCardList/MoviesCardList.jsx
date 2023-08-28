@@ -7,10 +7,14 @@ const MoviesCardList = ({
   onDeleteMovie,
   filteredMoviesArray,
   isShortMovies,
+  serverResponceError,
 }) => {
   const location = useLocation();
 
   const getSearchErrorText = () => {
+    if (location.pathname === '/movies' && serverResponceError !== '') {
+      return serverResponceError;
+    }
     if (location.pathname === '/movies' && filteredMoviesArray.length === 0) {
       return 'Нужно ввести ключевое слово';
     }
@@ -27,7 +31,7 @@ const MoviesCardList = ({
     ) {
       return 'Пока нет сохранённых фильмов';
     }
-    return
+    return;
   };
 
   return (
