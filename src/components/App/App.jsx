@@ -183,6 +183,8 @@ const App = () => {
               <SavedMovies
                 onDeleteMovie={handleDeleteMovie}
                 combinedMoviesArray={combinedMoviesArray}
+                setCombinedMoviesArray={setCombinedMoviesArray}
+                onSearch={hahdleSubmitSearch}
               />
             }
           />

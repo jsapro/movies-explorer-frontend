@@ -6,13 +6,26 @@ import Footer from '../Footer/Footer';
 import SearchForm from '../Movies/SearchForm/SearchForm';
 import { filter } from '../../utils/constants';
 
-const SavedMovies = ({ combinedMoviesArray, onDeleteMovie }) => {
+const SavedMovies = ({
+  combinedMoviesArray,
+  onDeleteMovie,
+  onSearch,
+  setCombinedMoviesArray,
+}) => {
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [filteredMoviesArray, setFilteredMoviesArray] = useState([]);
   const [searchString, setSearchString] = useState('');
 
   useEffect(() => {
-      handleSubmitSearch(searchString, isShortMovies);
+    onSearch()
+      .then((combinedMoviesArray) => {
+        setCombinedMoviesArray(combinedMoviesArray);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
+    handleSubmitSearch(searchString, isShortMovies);
   }, [isShortMovies, combinedMoviesArray]);
 
   const handleSubmitSearch = (searchString, isShortMovies) => {
@@ -41,7 +54,7 @@ const SavedMovies = ({ combinedMoviesArray, onDeleteMovie }) => {
           onSearch={handleSubmitSearch}
           isShortMovies={isShortMovies}
           onCheck={handleCheckBox}
-          />
+        />
         <MoviesCardList
           isShortMovies={isShortMovies}
           onDeleteMovie={onDeleteMovie}

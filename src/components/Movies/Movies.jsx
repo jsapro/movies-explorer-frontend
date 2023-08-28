@@ -24,17 +24,23 @@ const Movies = ({
   }, [isShortMovies]);
 
   useEffect(() => {
-    onSearch().then((combinedMoviesArray) => {
-      setCombinedMoviesArray(combinedMoviesArray);
-      const movies = JSON.parse(localStorage.getItem('filteredMoviesArray'));
-      const search = JSON.parse(localStorage.getItem('lastSearchString'));
-      const isShort = JSON.parse(localStorage.getItem('isShortMovies'));
-      console.log(movies, isShort, search);
-      const lastSearchResultArray = filter(combinedMoviesArray, search, isShort);
-      setFilteredMoviesArray(lastSearchResultArray);
-      setSearchString(search)
-      setIsShortMovies(isShort)
-    });
+    onSearch()
+      .then((combinedMoviesArray) => {
+        setCombinedMoviesArray(combinedMoviesArray);
+        const movies = JSON.parse(localStorage.getItem('filteredMoviesArray'));
+        const search = JSON.parse(localStorage.getItem('lastSearchString'));
+        const isShort = JSON.parse(localStorage.getItem('isShortMovies'));
+        console.log(movies, isShort, search);
+        const lastSearchResultArray = filter(
+          combinedMoviesArray,
+          search,
+          isShort
+        );
+        setFilteredMoviesArray(lastSearchResultArray);
+        setSearchString(search);
+        setIsShortMovies(isShort);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   const handleSubmitSearch = (searchString, isShortMovies) => {
