@@ -41,8 +41,9 @@ const SavedMovies = ({ combinedMoviesArray, onDeleteMovie }) => {
           onSearch={handleSubmitSearch}
           isShortMovies={isShortMovies}
           onCheck={handleCheckBox}
-        />
+          />
         <MoviesCardList
+          isShortMovies={isShortMovies}
           onDeleteMovie={onDeleteMovie}
           filteredMoviesArray={filteredMoviesArray}
         />
