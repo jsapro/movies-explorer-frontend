@@ -12,6 +12,7 @@ const Movies = ({
   setCombinedMoviesArray,
   onSearch,
   serverResponceError,
+  isLoggedIn
 }) => {
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [filteredMoviesArray, setFilteredMoviesArray] = useState([]);
@@ -73,7 +74,7 @@ const Movies = ({
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn}/>
       <main>
         <SearchForm
           onSearch={handleSubmitSearch}

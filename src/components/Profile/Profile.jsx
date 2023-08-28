@@ -1,7 +1,11 @@
 import './Profile.css';
 import Header from '../Header/Header';
 
-const Profile = () => {
+const Profile = ({handleSignOut}) => {
+
+  const onSignOut = () => {
+    handleSignOut()
+  }
 
   // Выбор кнопки Редактировать/Сохранить
   // const isReadyToSave = true;
@@ -63,7 +67,7 @@ const Profile = () => {
                 <button
                   className='profile__logout-btn'
                   type='button'
-                  onClick={() => {}}
+                  onClick={onSignOut}
                 >Выйти из аккаунта</button>
               </>
             )}

@@ -2,12 +2,12 @@ import './Header.css';
 import Logo from '../Logo/Logo';
 import Navigation from '../Navigation/Navigation';
 
-const Header = () => {
+const Header = ({isLoggedIn}) => {
   return (
     <header className='header'>
       <div className='header__container'>
         <Logo />
-        <Navigation />
+        <Navigation isLoggedIn={isLoggedIn}/>
       </div>
     </header>
   );

@@ -1,6 +1,13 @@
 import './AuthInput.css';
 
-const AuthInput = ({ inputDescription, name, minLength, maxLength, type }) => {
+const AuthInput = ({
+  inputDescription,
+  name,
+  minLength,
+  maxLength,
+  type,
+  handleChange,
+}) => {
   return (
     <label className='auth-input'>
       <span className='auth-input__name'>{inputDescription}</span>
@@ -12,7 +19,7 @@ const AuthInput = ({ inputDescription, name, minLength, maxLength, type }) => {
         maxLength={maxLength || null}
         placeholder=''
         required
-        onChange={() => {}}
+        onChange={handleChange}
       />
       <span className='auth-input__error-text'>ошибка заполнения инпута</span>
     </label>

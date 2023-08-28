@@ -11,6 +11,7 @@ const SavedMovies = ({
   onDeleteMovie,
   onSearch,
   setCombinedMoviesArray,
+  isLoggedIn
 }) => {
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [filteredMoviesArray, setFilteredMoviesArray] = useState([]);
@@ -48,7 +49,7 @@ const SavedMovies = ({
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn}/>
       <main>
         <SearchForm
           onSearch={handleSubmitSearch}

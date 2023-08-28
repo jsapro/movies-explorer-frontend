@@ -1,18 +1,18 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import './Navigation.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-const Navigation = () => {
+const Navigation = ({isLoggedIn}) => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 768);
+
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log('currentUser', currentUser);
 
   window.addEventListener('resize', () => {
     setIsMobileMode(window.innerWidth <= 768);
   });
-
-  // Хэдер меняется в зависимомти от авторизации
-  const isAuthorized = true;
-  // const isAuthorized = false;
 
   const openBurger = () => {
     setIsBurgerOpen(true);
@@ -152,7 +152,8 @@ const Navigation = () => {
   };
 
   const getActualNav = () => {
-    if (!isAuthorized) return getGuestNav();
+    // if (!currentUser) return getGuestNav();
+    if (!isLoggedIn) return getGuestNav();
     if (isMobileMode) return getBurgerNav();
     return getDesktopNav();
   };

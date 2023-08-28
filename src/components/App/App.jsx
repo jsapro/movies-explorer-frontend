@@ -16,13 +16,15 @@ import {
 } from '../../utils/constants';
 
 import './App.css';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const App = () => {
   const moviesApi = new MoviesApi(BEATFILMMOVIES_URL);
   const mainApi = new MainApi(MAIN_BACKEND_URL);
   const [combinedMoviesArray, setCombinedMoviesArray] = useState([]);
-  const [userData, setUserData] = useState({});
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('jwt'));
   const [serverResponceError, setServerResponceError] = useState('');
   const navigate = useNavigate();
 
@@ -34,12 +36,13 @@ const App = () => {
     if (localStorage.getItem('jwt')) {
       mainApi.getUserInfo().then((user) => {
         if (user.data._id) {
-          setUserData(user.data);
+          setCurrentUser(user.data);
           setIsLoggedIn(true);
         }
       });
     }
   };
+  
   const hahdleSubmitSearch = () => {
     if (
       localStorage.getItem('combinedMoviesArray') &&
@@ -83,12 +86,15 @@ const App = () => {
 
   useEffect(() => {
     hahdleSubmitSearch();
-  }, []);
+  }, [isLoggedIn]);
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
     localStorage.removeItem('jwt');
     localStorage.removeItem('combinedMoviesArray');
+    localStorage.removeItem('isShortMovies');
+    localStorage.removeItem('lastSearchString');
+    localStorage.removeItem('filteredMoviesArray');
     navigate('/', { replace: true });
   };
 
@@ -100,11 +106,33 @@ const App = () => {
   //   register().catch((err) => console.log(err));
   // },[]);
 
+  const handleUserRegister = (name, email, password) => {
+    console.log('handleUserRegister');
+    return mainApi
+      .register(name, email, password)
+      .then((data) => {
+        handleUserLogin(email, password);
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
+
   // const login = () => {
   //   return mainApi.login('test-032@test.com', 'password-032');
   // };
 
   // login().catch(err => console.log(err))
+
+  const handleUserLogin = (email, password) => {
+    return mainApi
+      .login(email, password)
+      .then((data) => {
+        setIsLoggedIn(true);
+        navigate('/movies', { replace: true });
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+  };
 
   // const getUserInfo = () => {
   //   return mainApi.getUserInfo().then((data) => console.log(data));
@@ -161,40 +189,53 @@ const App = () => {
   };
 
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       <div className='page'>
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='/' element={<Main isLoggedIn={isLoggedIn} />} />
           <Route
-            path='/movies'
-            element={
-              <Movies
-                onSearch={hahdleSubmitSearch}
-                onSaveMovie={handleSaveMovie}
-                onDeleteMovie={handleDeleteMovie}
-                setCombinedMoviesArray={setCombinedMoviesArray}
-                serverResponceError={serverResponceError}
-              />
-            }
+            path='/signin'
+            element={<Login handleUserLogin={handleUserLogin} />}
           />
           <Route
-            path='/saved-movies'
-            element={
-              <SavedMovies
-                onDeleteMovie={handleDeleteMovie}
-                combinedMoviesArray={combinedMoviesArray}
-                setCombinedMoviesArray={setCombinedMoviesArray}
-                onSearch={hahdleSubmitSearch}
-              />
-            }
+            path='/signup'
+            element={<Register onRegister={handleUserRegister} />}
           />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/signin' element={<Login />} />
-          <Route path='/signup' element={<Register />} />
+          <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
+            <Route
+              path='/movies'
+              element={
+                <Movies
+                  isLoggedIn={isLoggedIn}
+                  onSearch={hahdleSubmitSearch}
+                  onSaveMovie={handleSaveMovie}
+                  onDeleteMovie={handleDeleteMovie}
+                  setCombinedMoviesArray={setCombinedMoviesArray}
+                  serverResponceError={serverResponceError}
+                />
+              }
+            />
+            <Route
+              path='/saved-movies'
+              element={
+                <SavedMovies
+                  onDeleteMovie={handleDeleteMovie}
+                  combinedMoviesArray={combinedMoviesArray}
+                  setCombinedMoviesArray={setCombinedMoviesArray}
+                  onSearch={hahdleSubmitSearch}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
+            />
+            <Route
+              path='/profile'
+              element={<Profile handleSignOut={handleSignOut} />}
+            />
+          </Route>
           <Route path='*' element={<Page404 />} />
         </Routes>
       </div>
-    </>
+    </CurrentUserContext.Provider>
   );
 };
 
