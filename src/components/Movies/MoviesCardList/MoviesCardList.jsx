@@ -36,7 +36,7 @@ const MoviesCardList = ({
 
   return (
     <>
-      {filteredMoviesArray.length === 0 ? (
+      {filteredMoviesArray?.length === 0 ? (
         <p className='search-error-text'>{getSearchErrorText()}</p>
       ) : null}
       <ul className='movies-card-list'>
