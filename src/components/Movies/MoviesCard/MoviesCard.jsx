@@ -1,8 +1,11 @@
 import './MoviesCard.css';
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import Preloader from '../../Preloader/Preloader';
 
 const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   const location = useLocation();
   const checkIsMovieSaved = () => {
     if (movie._id !== '') return true;
@@ -36,6 +39,10 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
     return 'movies-card__btn_type_normal';
   };
 
+  const handleImageLoading = (e) => {
+    setIsLoading(false);
+  };
+
   return (
     <li className='movies-card'>
       <div className='movies-card__img-container'>
@@ -49,10 +56,14 @@ const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
           to={movie.trailerLink}
           target='_blank'
         >
+          {isLoading && <Preloader />}
           <img
-            className='movies-card__img'
+            className={`movies-card__img ${
+              isLoading ? 'movies-card__img_inactive' : ''
+            }`}
             src={movie.image}
             alt='карточка фильма'
+            onLoad={handleImageLoading}
           />
         </Link>
       </div>

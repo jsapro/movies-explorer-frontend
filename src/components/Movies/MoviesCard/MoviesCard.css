@@ -20,6 +20,10 @@
     aspect-ratio: 1.784;
 }
 
+.movies-card__img_inactive {
+    display: none;
+}
+
 .movies-card__link {
     font-size: 0;
 }
