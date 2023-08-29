@@ -54,7 +54,7 @@ const Movies = ({
           isShortMovies
         );
         setFilteredMoviesArray(filteredMoviesArray);
-      
+
         return filteredMoviesArray;
       })
       .catch((err) => console.log(err));

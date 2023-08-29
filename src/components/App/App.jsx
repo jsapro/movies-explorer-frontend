@@ -75,6 +75,7 @@ const App = () => {
           'combinedMoviesArray',
           JSON.stringify(combinedMoviesArray)
         );
+        setServerResponceError('');
         setCombinedMoviesArray(combinedMoviesArray);
         return combinedMoviesArray;
       })
@@ -98,7 +99,6 @@ const App = () => {
   };
 
   const handleUserRegister = (name, email, password) => {
-    console.log('handleUserRegister');
     return mainApi
       .register(name, email, password)
       .then((data) => {
