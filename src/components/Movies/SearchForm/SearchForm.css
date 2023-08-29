@@ -45,6 +45,17 @@
     transform: scale(1.07);
 }
 
+.search-form__button:disabled {
+    cursor: not-allowed;
+    transform: none;
+}
+
+.search-form__button:hover:disabled::after {
+    content: '❌';
+    border-radius: 25%;
+    background-color: #EE3465;
+}
+
 @media all and (min-width: 768px) {
     .search-form {
         padding: 80px 30px 10px;
