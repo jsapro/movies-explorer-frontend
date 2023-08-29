@@ -1,14 +1,13 @@
 import { Link, NavLink } from 'react-router-dom';
 import { useState, useEffect, useContext } from 'react';
 import './Navigation.css';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 const Navigation = ({isLoggedIn}) => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 768);
 
-  // const { currentUser } = useContext(CurrentUserContext);
-  // console.log('currentUser', currentUser);
+  // const  currentUser  = useContext(CurrentUserContext);
 
   window.addEventListener('resize', () => {
     setIsMobileMode(window.innerWidth <= 768);

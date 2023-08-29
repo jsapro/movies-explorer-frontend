@@ -119,6 +119,12 @@
     cursor: pointer;
 }
 
+.profile__submit-btn:disabled {
+    background: #272727;
+    border: 0.5px dotted white;
+    cursor: not-allowed;
+}
+
 @media all and (min-width:768px) {
     .profile {
         max-width: 410px;

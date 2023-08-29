@@ -97,30 +97,15 @@ const App = () => {
     navigate('/', { replace: true });
   };
 
-  // useEffect(() => {
-  //   const register = () => {
-  //     return mainApi.register('name-032', 'test-032@test.com', 'password-032');
-  //   };
-
-  //   register().catch((err) => console.log(err));
-  // },[]);
-
   const handleUserRegister = (name, email, password) => {
     console.log('handleUserRegister');
     return mainApi
       .register(name, email, password)
       .then((data) => {
         handleUserLogin(email, password);
-        console.log(data);
       })
       .catch((err) => console.log(err));
   };
-
-  // const login = () => {
-  //   return mainApi.login('test-032@test.com', 'password-032');
-  // };
-
-  // login().catch(err => console.log(err))
 
   const handleUserLogin = (email, password) => {
     return mainApi
@@ -128,24 +113,17 @@ const App = () => {
       .then((data) => {
         setIsLoggedIn(true);
         navigate('/movies', { replace: true });
-        console.log(data);
       })
       .catch((err) => console.log(err));
   };
 
-  // const getUserInfo = () => {
-  //   return mainApi.getUserInfo().then((data) => console.log(data));
-  // };
-  // getUserInfo().catch(err => console.log(err))
-
-  // const updateUserInfo = () => {
-  //   return mainApi
-  //     .updateUserInfo('name-032-new', 'test-032-new@test.com')
-  //     .then((data) => console.log(data))
-  //     .catch((err) => console.log(err));
-  // };
-
-  // updateUserInfo()
+  const handleUpdateUserInfo = (name, email) => {
+    return mainApi.updateUserInfo(name, email).then((currentUser) => {
+      setCurrentUser(currentUser.data);
+      console.log(currentUser.data);
+    });
+    // .catch((err) => console.log(err));
+  };
 
   const handleSaveMovie = (movie) => {
     return mainApi
@@ -236,6 +214,7 @@ const App = () => {
                 <Profile
                   handleSignOut={handleSignOut}
                   isLoggedIn={isLoggedIn}
+                  onUpdateUser={handleUpdateUserInfo}
                 />
               }
             />
