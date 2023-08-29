@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './Login.css';
 import AuthInput from '../AuthInput/AuthInput';
 import AuthSubmit from '../AuthSubmit/AuthSubmit';
@@ -5,12 +6,20 @@ import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 
 const Login = ({ handleUserLogin }) => {
+  const [serverResponseError, setServerResponseError] = useState('');
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    handleUserLogin(values.email, values.password);
+    handleUserLogin(values.email, values.password).catch((err) => {
+      setServerResponseError(err.message);
+    });
+  };
+
+  const handleChangeInput = (e) => {
+    setServerResponseError('');
+    handleChange(e);
   };
 
   return (
@@ -24,16 +33,21 @@ const Login = ({ handleUserLogin }) => {
           autoComplete='on'
           onSubmit={handleLoginSubmit}
         >
-          <AuthInput inputDescription='E-mail' name='email' type='email' handleChange={handleChange}/>
+          <AuthInput
+            inputDescription='E-mail'
+            name='email'
+            type='email'
+            handleChange={handleChangeInput}
+          />
           <AuthInput
             inputDescription='Пароль'
             name='password'
             minLength={5}
             type='password'
-            handleChange={handleChange}
+            handleChange={handleChangeInput}
           />
 
-          <AuthSubmit type='login' />
+          <AuthSubmit type='login' serverResponseError={serverResponseError} />
         </form>
       </div>
     </main>

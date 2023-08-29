@@ -34,12 +34,18 @@ const App = () => {
 
   const handleTokenCheck = () => {
     if (localStorage.getItem('jwt')) {
-      mainApi.getUserInfo().then((user) => {
-        if (user.data._id) {
-          setCurrentUser(user.data);
-          setIsLoggedIn(true);
-        }
-      });
+      mainApi
+        .getUserInfo()
+        .then((user) => {
+          if (user.data._id) {
+            setCurrentUser(user.data);
+            setIsLoggedIn(true);
+          }
+        })
+        .catch((err) => {
+          setIsLoggedIn(false);
+          console.log(err);
+        });
     }
   };
 
@@ -85,9 +91,9 @@ const App = () => {
       });
   };
 
-  useEffect(() => {
-    hahdleSubmitSearch();
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   hahdleSubmitSearch();
+  // }, [isLoggedIn]);
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
@@ -104,7 +110,7 @@ const App = () => {
       .then((data) => {
         handleUserLogin(email, password);
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
   };
 
   const handleUserLogin = (email, password) => {
@@ -114,7 +120,7 @@ const App = () => {
         setIsLoggedIn(true);
         navigate('/movies', { replace: true });
       })
-      .catch((err) => console.log(err));
+      // .catch((err) => console.log(err));
   };
 
   const handleUpdateUserInfo = (name, email) => {

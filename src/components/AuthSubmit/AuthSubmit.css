@@ -13,8 +13,6 @@
 }
 
 .auth-submit__error-text {
-    /* скрыто пока нет ошибки */
-    display: none;
     color: #FF004C;
     text-align: center;
     font-size: 11px;

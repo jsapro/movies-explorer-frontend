@@ -1,12 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
 import './AuthSubmit.css';
 
-const AuthSubmit = ({ type }) => {
+const AuthSubmit = ({ type, serverResponseError }) => {
   const location = useLocation();
 
   return (
     <div className={`auth-submit auth-submit_type_${type}`}>
-      <p className='auth-submit__error-text'>Что-то пошло не так...</p>
+      <p className='auth-submit__error-text'>{serverResponseError}</p>
       {location.pathname === '/signup' ? (
         <>
           <button className='auth-submit__button' type='submit'>
