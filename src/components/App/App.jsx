@@ -229,7 +229,7 @@ const App = () => {
             />
             <Route
               path='/profile'
-              element={<Profile handleSignOut={handleSignOut} />}
+              element={<Profile handleSignOut={handleSignOut} isLoggedIn={isLoggedIn}/>}
             />
           </Route>
           <Route path='*' element={<Page404 />} />

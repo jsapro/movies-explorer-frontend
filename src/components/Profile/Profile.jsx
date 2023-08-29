@@ -1,7 +1,7 @@
 import './Profile.css';
 import Header from '../Header/Header';
 
-const Profile = ({handleSignOut}) => {
+const Profile = ({handleSignOut, isLoggedIn}) => {
 
   const onSignOut = () => {
     handleSignOut()
@@ -13,7 +13,7 @@ const Profile = ({handleSignOut}) => {
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={isLoggedIn}/>
 
       <main className='profile'>
         <h1 className='profile__title'>Привет, Виталий!</h1>
