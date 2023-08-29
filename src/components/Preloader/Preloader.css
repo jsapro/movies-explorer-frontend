@@ -52,6 +52,7 @@
     padding: 20px;
     box-sizing: border-box;
     min-height: 168px;
+    aspect-ratio: 1.784;
 }
 
 .preloader__container {
