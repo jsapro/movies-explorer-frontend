@@ -42,7 +42,7 @@ const App = () => {
       });
     }
   };
-  
+
   const hahdleSubmitSearch = () => {
     if (
       localStorage.getItem('combinedMoviesArray') &&
@@ -193,14 +193,18 @@ const App = () => {
       <div className='page'>
         <Routes>
           <Route path='/' element={<Main isLoggedIn={isLoggedIn} />} />
-          <Route
-            path='/signin'
-            element={<Login handleUserLogin={handleUserLogin} />}
-          />
-          <Route
-            path='/signup'
-            element={<Register onRegister={handleUserRegister} />}
-          />
+          {!isLoggedIn ? (
+            <>
+              <Route
+                path='/signin'
+                element={<Login handleUserLogin={handleUserLogin} />}
+              />
+              <Route
+                path='/signup'
+                element={<Register onRegister={handleUserRegister} />}
+              />
+            </>
+          ) : null}
           <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
             <Route
               path='/movies'
@@ -229,7 +233,12 @@ const App = () => {
             />
             <Route
               path='/profile'
-              element={<Profile handleSignOut={handleSignOut} isLoggedIn={isLoggedIn}/>}
+              element={
+                <Profile
+                  handleSignOut={handleSignOut}
+                  isLoggedIn={isLoggedIn}
+                />
+              }
             />
           </Route>
           <Route path='*' element={<Page404 />} />
