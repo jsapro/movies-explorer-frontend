@@ -7,8 +7,8 @@ const Navigation = ({isLoggedIn}) => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 768);
 
-  const { currentUser } = useContext(CurrentUserContext);
-  console.log('currentUser', currentUser);
+  // const { currentUser } = useContext(CurrentUserContext);
+  // console.log('currentUser', currentUser);
 
   window.addEventListener('resize', () => {
     setIsMobileMode(window.innerWidth <= 768);

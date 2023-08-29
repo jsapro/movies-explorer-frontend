@@ -94,7 +94,6 @@ const App = () => {
     localStorage.removeItem('combinedMoviesArray');
     localStorage.removeItem('isShortMovies');
     localStorage.removeItem('lastSearchString');
-    localStorage.removeItem('filteredMoviesArray');
     navigate('/', { replace: true });
   };
 

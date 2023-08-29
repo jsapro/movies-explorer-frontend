@@ -28,10 +28,8 @@ const Movies = ({
     onSearch()
       .then((combinedMoviesArray) => {
         setCombinedMoviesArray(combinedMoviesArray);
-        const movies = JSON.parse(localStorage.getItem('filteredMoviesArray'));
         const search = JSON.parse(localStorage.getItem('lastSearchString'));
         const isShort = JSON.parse(localStorage.getItem('isShortMovies'));
-        console.log(movies, isShort, search);
         const lastSearchResultArray = filter(
           combinedMoviesArray,
           search,
@@ -56,10 +54,7 @@ const Movies = ({
           isShortMovies
         );
         setFilteredMoviesArray(filteredMoviesArray);
-        localStorage.setItem(
-          'filteredMoviesArray',
-          JSON.stringify(filteredMoviesArray)
-        );
+      
         return filteredMoviesArray;
       })
       .catch((err) => console.log(err));
