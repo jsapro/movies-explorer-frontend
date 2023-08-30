@@ -7,6 +7,7 @@ const AuthInput = ({
   maxLength,
   type,
   handleChange,
+  inputError
 }) => {
   return (
     <label className='auth-input'>
@@ -21,7 +22,7 @@ const AuthInput = ({
         required
         onChange={handleChange}
       />
-      <span className='auth-input__error-text'>ошибка заполнения инпута</span>
+      <span className='auth-input__error-text'>{inputError}</span>
     </label>
   );
 };

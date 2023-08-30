@@ -38,13 +38,15 @@ const Login = ({ handleUserLogin }) => {
             name='email'
             type='email'
             handleChange={handleChangeInput}
+            inputError={errors.email}
           />
           <AuthInput
             inputDescription='Пароль'
             name='password'
-            minLength={5}
+            minLength='8'
             type='password'
             handleChange={handleChangeInput}
+            inputError={errors.password}
           />
 
           <AuthSubmit type='login' serverResponseError={serverResponseError} />

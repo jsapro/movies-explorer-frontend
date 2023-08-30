@@ -35,24 +35,26 @@ const Register = ({ onRegister }) => {
           <AuthInput
             inputDescription='Имя'
             name='name'
-            minLength={3}
+            minLength='2'
             type='text'
             handleChange={handleChangeInput}
-          />
+            inputError={errors.name}
+            />
           <AuthInput
             inputDescription='E-mail'
             name='email'
-            minLength={3}
             type='email'
             handleChange={handleChangeInput}
-          />
+            inputError={errors.email}
+            />
           <AuthInput
             inputDescription='Пароль'
             name='password'
-            minLength={5}
+            minLength='8'
             type='password'
             handleChange={handleChangeInput}
-          />
+            inputError={errors.password}
+            />
 
           <AuthSubmit
             type='register'
