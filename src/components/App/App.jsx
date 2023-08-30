@@ -30,7 +30,7 @@ const App = () => {
 
   useEffect(() => {
     handleTokenCheck();
-  }, []);
+  }, [isLoggedIn]);
 
   const handleTokenCheck = () => {
     if (localStorage.getItem('jwt')) {
