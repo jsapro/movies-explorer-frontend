@@ -126,7 +126,6 @@ const App = () => {
   const handleUpdateUserInfo = (name, email) => {
     return mainApi.updateUserInfo(name, email).then((currentUser) => {
       setCurrentUser(currentUser.data);
-      console.log(currentUser.data);
     });
     // .catch((err) => console.log(err));
   };

@@ -82,7 +82,7 @@
 }
 
 .profile__edit-btn {
-    padding: 363px 0 0 0;
+    margin: 363px 0 0 0;
     background: transparent;
     border: none;
     color: #FFF;
@@ -94,7 +94,7 @@
 }
 
 .profile__logout-btn {
-    padding: 16px 0 0 0;
+    margin: 16px 0 0 0;
     background: transparent;
     border: none;
     color: #EE3465;
@@ -132,7 +132,7 @@
     }
 
     .profile__edit-btn {
-        padding: 194px 0 0 0;
+        margin: 194px 0 0 0;
         font-size: 13px;
     }
 
@@ -170,7 +170,7 @@
     }
 
     .profile__edit-btn {
-        padding: 204px 0 0 0;
+        margin: 204px 0 0 0;
         font-size: 13px;
     }
 
