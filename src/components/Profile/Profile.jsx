@@ -7,12 +7,11 @@ import { useEffect } from 'react';
 import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
+  const currentUser = useContext(CurrentUserContext);
   const [responseError, setResponseError] = useState('');
   const [isReadyToSave, setIsReadyToSave] = useState(false);
-  const { values, handleChange, errors, isValid, setIsValid } =
+  const { values, handleChange, errors, isValid, setIsValid, setValues } =
     useFormWithValidation();
-
-  const currentUser = useContext(CurrentUserContext);
 
   const onSignOut = () => {
     handleSignOut();
@@ -37,12 +36,18 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
   }, [values, currentUser]);
 
   useEffect(() => {
-   setResponseError('')
+    setResponseError('');
   }, [values]);
 
   const handleEdit = () => {
     setIsReadyToSave(true);
   };
+
+  useEffect(() => {
+    setValues((prevState) => {
+      return { ...prevState, name: currentUser.name, email: currentUser.email };
+    });
+  }, [currentUser]);
 
   return (
     <>
@@ -64,7 +69,6 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
               name='name'
               minLength='2'
               maxLength='30'
-              placeholder={currentUser.name}
               required
               onChange={handleChange}
               value={values.name || ''}
@@ -78,7 +82,6 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
               type='email'
               name='email'
               minLength='3'
-              placeholder={currentUser.email}
               required
               onChange={handleChange}
               value={values.email || ''}
