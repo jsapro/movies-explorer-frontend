@@ -7,7 +7,10 @@ const AuthInput = ({
   maxLength,
   type,
   handleChange,
-  inputError
+  inputError,
+  value,
+  title,
+  emailRegex
 }) => {
   return (
     <label className='auth-input'>
@@ -18,9 +21,11 @@ const AuthInput = ({
         name={name}
         minLength={minLength || null}
         maxLength={maxLength || null}
-        placeholder=''
+        value={value || ''}
         required
         onChange={handleChange}
+        pattern={emailRegex}
+        title={title}
       />
       <span className='auth-input__error-text'>{inputError}</span>
     </label>

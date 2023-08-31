@@ -4,6 +4,8 @@ import Logo from '../Logo/Logo';
 import AuthInput from '../AuthInput/AuthInput';
 import AuthSubmit from '../AuthSubmit/AuthSubmit';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { EMAIL_REGEX } from '../../utils/constants';
+import { EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Register = ({ onRegister }) => {
   const [serverResponseError, setServerResponseError] = useState('');
@@ -40,6 +42,7 @@ const Register = ({ onRegister }) => {
             type='text'
             handleChange={handleChangeInput}
             inputError={errors.name}
+            value={values.name}
             />
           <AuthInput
             inputDescription='E-mail'
@@ -47,6 +50,9 @@ const Register = ({ onRegister }) => {
             type='email'
             handleChange={handleChangeInput}
             inputError={errors.email}
+            value={values.email}
+            emailRegex={EMAIL_REGEX}
+            title={EMAIL_TITLE_TEXT}
             />
           <AuthInput
             inputDescription='Пароль'
@@ -55,6 +61,7 @@ const Register = ({ onRegister }) => {
             type='password'
             handleChange={handleChangeInput}
             inputError={errors.password}
+            value={values.password}
             />
 
           <AuthSubmit

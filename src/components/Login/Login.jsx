@@ -4,6 +4,8 @@ import AuthInput from '../AuthInput/AuthInput';
 import AuthSubmit from '../AuthSubmit/AuthSubmit';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
+import { EMAIL_REGEX } from '../../utils/constants';
+import { EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Login = ({ handleUserLogin }) => {
   const [serverResponseError, setServerResponseError] = useState('');
@@ -40,7 +42,10 @@ const Login = ({ handleUserLogin }) => {
             type='email'
             handleChange={handleChangeInput}
             inputError={errors.email}
-          />
+            emailRegex={EMAIL_REGEX}
+            value={values.email}
+            title={EMAIL_TITLE_TEXT}
+            />
           <AuthInput
             inputDescription='Пароль'
             name='password'
@@ -48,6 +53,7 @@ const Login = ({ handleUserLogin }) => {
             type='password'
             handleChange={handleChangeInput}
             inputError={errors.password}
+            value={values.password}
           />
 
           <AuthSubmit type='login' serverResponseError={serverResponseError} isValid={isValid} />
