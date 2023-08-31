@@ -32,6 +32,7 @@ const Login = ({ handleUserLogin }) => {
           className='login__form'
           autoComplete='on'
           onSubmit={handleLoginSubmit}
+          noValidate
         >
           <AuthInput
             inputDescription='E-mail'

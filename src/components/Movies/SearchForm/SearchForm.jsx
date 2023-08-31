@@ -16,6 +16,7 @@ const SearchForm = ({ onSearch, onCheck, isShortMovies }) => {
         onSubmit={handleSubmit}
         className='search-form__form'
         name='searchForm'
+        noValidate
       >
         <div className='search-form__container'>
           <input

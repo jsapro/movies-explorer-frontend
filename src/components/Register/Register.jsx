@@ -31,6 +31,7 @@ const Register = ({ onRegister }) => {
           className='register__form'
           autoComplete='on'
           onSubmit={handleRegisterSubmit}
+          noValidate
         >
           <AuthInput
             inputDescription='Имя'
