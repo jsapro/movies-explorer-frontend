@@ -4,6 +4,7 @@ import useFormWithValidation from '../../hooks/useFormWithValidation';
 import { useContext, useState } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useEffect } from 'react';
+import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
   const [responseError, setResponseError] = useState('');
@@ -81,6 +82,8 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
               required
               onChange={handleChange}
               value={values.email || ''}
+              pattern={EMAIL_REGEX}
+              title={EMAIL_TITLE_TEXT}
             />
           </label>
           <span className='profile__span-error'>{errors.email}</span>

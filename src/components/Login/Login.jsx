@@ -4,8 +4,7 @@ import AuthInput from '../AuthInput/AuthInput';
 import AuthSubmit from '../AuthSubmit/AuthSubmit';
 import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
-import { EMAIL_REGEX } from '../../utils/constants';
-import { EMAIL_TITLE_TEXT } from '../../utils/constants';
+import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Login = ({ handleUserLogin }) => {
   const [serverResponseError, setServerResponseError] = useState('');
