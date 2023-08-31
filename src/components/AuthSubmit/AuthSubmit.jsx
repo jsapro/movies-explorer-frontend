@@ -1,7 +1,7 @@
 import { Link, useLocation } from 'react-router-dom';
 import './AuthSubmit.css';
 
-const AuthSubmit = ({ type, serverResponseError }) => {
+const AuthSubmit = ({ type, serverResponseError, isValid }) => {
   const location = useLocation();
 
   return (
@@ -9,7 +9,7 @@ const AuthSubmit = ({ type, serverResponseError }) => {
       <p className='auth-submit__error-text'>{serverResponseError}</p>
       {location.pathname === '/signup' ? (
         <>
-          <button className='auth-submit__button' type='submit'>
+          <button className='auth-submit__button' type='submit' disabled={!isValid}>
             Зарегистрироваться
           </button>
 
@@ -22,7 +22,7 @@ const AuthSubmit = ({ type, serverResponseError }) => {
         </>
       ) : (
         <>
-          <button className='auth-submit__button' type='submit'>
+          <button className='auth-submit__button' type='submit' disabled={!isValid}>
             Войти
           </button>
 

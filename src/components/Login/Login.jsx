@@ -50,7 +50,7 @@ const Login = ({ handleUserLogin }) => {
             inputError={errors.password}
           />
 
-          <AuthSubmit type='login' serverResponseError={serverResponseError} />
+          <AuthSubmit type='login' serverResponseError={serverResponseError} isValid={isValid} />
         </form>
       </div>
     </main>

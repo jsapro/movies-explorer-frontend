@@ -61,6 +61,7 @@ const Register = ({ onRegister }) => {
             type='register'
             onRegister={onRegister}
             serverResponseError={serverResponseError}
+            isValid={isValid}
           ></AuthSubmit>
         </form>
       </div>
