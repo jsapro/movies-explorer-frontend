@@ -8,8 +8,9 @@ import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
   const currentUser = useContext(CurrentUserContext);
-  const [responseError, setResponseError] = useState('');
   const [isReadyToSave, setIsReadyToSave] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const { values, handleChange, errors, isValid, setIsValid, setValues } =
     useFormWithValidation();
 
@@ -21,9 +22,13 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
     e.preventDefault();
     const name = values.name;
     const email = values.email;
-    onUpdateUser(name, email).catch((err) => {
-      setResponseError(err.message);
-    });
+    onUpdateUser(name, email)
+      .then(() => {
+        setSuccessMessage('Успешное обновление профиля');
+      })
+      .catch((err) => {
+        setErrorMessage('Неверно введены данные. Попробуйте ещё раз');
+      });
   };
 
   useEffect(() => {
@@ -36,7 +41,7 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
   }, [values, currentUser]);
 
   useEffect(() => {
-    setResponseError('');
+    setErrorMessage('');
   }, [values]);
 
   const handleEdit = () => {
@@ -48,6 +53,10 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
       return { ...prevState, name: currentUser.name, email: currentUser.email };
     });
   }, [currentUser]);
+
+  const handleFocus = () => {
+    setSuccessMessage('');
+  };
 
   return (
     <>
@@ -72,6 +81,7 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
               required
               onChange={handleChange}
               value={values.name || ''}
+              onFocus={handleFocus}
             />
           </label>
           <span className='profile__span-error'>{errors.name}</span>
@@ -87,18 +97,25 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
               value={values.email || ''}
               pattern={EMAIL_REGEX}
               title={EMAIL_TITLE_TEXT}
+              onFocus={handleFocus}
             />
           </label>
           <span className='profile__span-error'>{errors.email}</span>
           <div className='profile__btn-container'>
             {isReadyToSave ? (
               <>
-                <p className='profile__submit-error'>{responseError}</p>
+                <p
+                  className={`profile__submit-message ${
+                    successMessage && 'profile__submit-message_type_succsess'
+                  } ${errorMessage && 'profile__submit-message_type_error'}`}
+                >
+                  {errorMessage || successMessage}
+                </p>
                 <button
                   className='profile__submit-btn'
                   type='submit'
                   onClick={() => {}}
-                  disabled={!isValid || responseError}
+                  disabled={!isValid || errorMessage}
                 >
                   Сохранить
                 </button>

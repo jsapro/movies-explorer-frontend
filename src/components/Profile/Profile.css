@@ -70,8 +70,7 @@
     flex-direction: column;
 }
 
-.profile__submit-error {
-    color: #FF004C;
+.profile__submit-message {
     text-align: center;
     font-size: 11px;
     font-weight: 400;
@@ -79,6 +78,14 @@
     padding: 330px 0 20px 0;
     margin: 0;
     min-height: 14px;
+}
+
+.profile__submit-message_type_succsess {
+    color: #3DDC84;
+}
+
+.profile__submit-message_type_error {
+    color: #FF004C;
 }
 
 .profile__edit-btn {
@@ -148,7 +155,7 @@
         font-size: 13px;
     }
 
-    .profile__submit-error {
+    .profile__submit-message {
         font-size: 13px;
         padding: 160px 0 20px 0;
         min-height: 16px;
@@ -174,7 +181,7 @@
         font-size: 13px;
     }
 
-    .profile__submit-error {
+    .profile__submit-message {
         padding: 170px 0 20px 0;
     }
 }
