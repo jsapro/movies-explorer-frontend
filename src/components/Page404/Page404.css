@@ -23,14 +23,16 @@
     transition: padding .7s ease-in-out, font-size .7s ease-in-out;
 }
 
-.page404__link {
+.page404__button {
     color: #4285F4;
     font-size: 12px;
     font-weight: 400;
     line-height: normal;
-    padding: 284px 0 30px 0;
-    text-decoration: none;
+    margin: 284px 0 30px 0;
+    background: transparent;
+    border: none;
     transition: padding .7s ease-in-out, font-size .7s ease-in-out;
+    cursor: pointer;
 }
 
 @media all and (min-width: 768px) {
@@ -44,9 +46,9 @@
         padding: 5px 0 0 0;
     }
 
-    .page404__link {
+    .page404__button {
         font-size: 14px;
-        padding: 184px 0 222px;
+        margin: 184px 0 222px;
     }
 }
 
