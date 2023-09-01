@@ -1,14 +1,28 @@
+import { useEffect } from 'react';
 import './SearchForm.css';
 import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 import useFormWithValidation from '../../../hooks/useFormWithValidation';
 
-const SearchForm = ({ onSearch, onCheck, isShortMovies }) => {
-  const { values, handleChange, errors, isValid } = useFormWithValidation();
+const SearchForm = ({ onSearch, onCheck, isShortMovies, searchString }) => {
+  const { values, handleChange, errors, isValid, setValues } =
+    useFormWithValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     onSearch(values.searchInput, isShortMovies);
   };
+
+  useEffect(() => {
+    setValues((prevState) => {
+      return { ...prevState, searchInput: searchString };
+    });
+  }, [searchString]);
+
+  useEffect(() => {
+    setValues((prevState) => {
+      return { ...prevState, searchInput: searchString };
+    });
+  }, []);
 
   return (
     <section className='search-form'>
@@ -21,7 +35,7 @@ const SearchForm = ({ onSearch, onCheck, isShortMovies }) => {
         <div className='search-form__container'>
           <input
             onChange={handleChange}
-            value={values.searchInput ? values.searchInput : ''}
+            value={values.searchInput}
             className='search-form__input'
             placeholder='Фильм'
             type='text'

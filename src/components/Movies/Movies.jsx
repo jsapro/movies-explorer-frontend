@@ -75,6 +75,7 @@ const Movies = ({
           onSearch={handleSubmitSearch}
           isShortMovies={isShortMovies}
           onCheck={handleCheckBox}
+          searchString={searchString}
         />
         <MoviesCardList
           serverResponceError={serverResponceError}

@@ -60,6 +60,7 @@ const SavedMovies = ({
           isShortMovies={isShortMovies}
           onDeleteMovie={onDeleteMovie}
           filteredMoviesArray={filteredMoviesArray}
+          searchString={searchString}
         />
       </main>
       <Footer />

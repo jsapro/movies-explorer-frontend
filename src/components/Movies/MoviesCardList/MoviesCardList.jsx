@@ -8,16 +8,28 @@ const MoviesCardList = ({
   filteredMoviesArray,
   isShortMovies,
   serverResponceError,
+  searchString
 }) => {
   const location = useLocation();
+  const lastSearchString = JSON.parse(localStorage.getItem('lastSearchString'))
 
   const getSearchErrorText = () => {
     if (location.pathname === '/movies' && serverResponceError !== '') {
       return serverResponceError;
     }
-    if (location.pathname === '/movies' && filteredMoviesArray.length === 0) {
+
+    if (location.pathname === '/movies' && filteredMoviesArray.length === 0 && lastSearchString === null ) {
       return 'Нужно ввести ключевое слово';
     }
+
+    if (location.pathname === '/movies' && lastSearchString !== '') {
+      return 'Ничего не найдено';
+    }
+
+    if (location.pathname === '/saved-movies' && searchString !== '') {
+      return 'Ничего не найдено';
+    }
+
     if (
       location.pathname === '/saved-movies' &&
       filteredMoviesArray.length === 0 &&
@@ -25,12 +37,14 @@ const MoviesCardList = ({
     ) {
       return 'Пока нет сохранённых короткометражных фильмов';
     }
+
     if (
       location.pathname === '/saved-movies' &&
       filteredMoviesArray.length === 0
     ) {
       return 'Пока нет сохранённых фильмов';
     }
+
     return;
   };
 
