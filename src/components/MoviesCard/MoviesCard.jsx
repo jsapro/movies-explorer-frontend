@@ -1,7 +1,7 @@
 import './MoviesCard.css';
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Preloader from '../../Preloader/Preloader';
+import Preloader from '../Preloader/Preloader';
 
 const MoviesCard = ({ movie, onSaveMovie, onDeleteMovie }) => {
   const [isLoading, setIsLoading] = useState(true);

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import './SavedMovies.css';
-import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-import SearchForm from '../Movies/SearchForm/SearchForm';
+import SearchForm from '../SearchForm/SearchForm';
 import { filter } from '../../utils/constants';
 
 const SavedMovies = ({
