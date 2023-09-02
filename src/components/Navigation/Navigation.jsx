@@ -3,15 +3,24 @@ import { useState, useEffect, useContext } from 'react';
 import './Navigation.css';
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
-const Navigation = ({isLoggedIn}) => {
+const Navigation = ({ isLoggedIn }) => {
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
   const [isMobileMode, setIsMobileMode] = useState(window.innerWidth <= 768);
+  const [width, setWidth] = useState(window.innerWidth);
 
   // const  currentUser  = useContext(CurrentUserContext);
 
-  window.addEventListener('resize', () => {
+  const onResize = () => {
     setIsMobileMode(window.innerWidth <= 768);
-  });
+    setWidth(window.innerWidth);
+  };
+  
+  useEffect(() => {
+    window.addEventListener('resize', onResize);
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, [width]);
 
   const openBurger = () => {
     setIsBurgerOpen(true);
