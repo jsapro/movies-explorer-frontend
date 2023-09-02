@@ -17,6 +17,8 @@ const Movies = ({
   const [isShortMovies, setIsShortMovies] = useState(false);
   const [filteredMoviesArray, setFilteredMoviesArray] = useState([]);
   const [searchString, setSearchString] = useState('');
+  const [numberToRender, setNumberToRender] = useState(1);
+  const [isHideButton, setIsHideButton] = useState(false);
 
   useEffect(() => {
     if (searchString !== '') {
@@ -67,6 +69,42 @@ const Movies = ({
     localStorage.setItem('isShortMovies', e.target.checked);
   };
 
+  useEffect(() => {
+    setNumberToRender(() => getMoviesConfig().numberOnStart);
+  }, []);
+
+  const getMoviesConfig = () => {
+    if (window.innerWidth < 768) {
+      return {
+        numberOnStart: 5,
+        numberToAdd: 2,
+      };
+    }
+    if (window.innerWidth < 1280) {
+      return {
+        numberOnStart: 8,
+        numberToAdd: 2,
+      };
+    }
+    if (window.innerWidth >= 1280) {
+      return {
+        numberOnStart: 12,
+        numberToAdd: 3,
+      };
+    }
+  };
+
+  useEffect(() => {
+    if (filteredMoviesArray.length <= numberToRender) {
+      return setIsHideButton(true);
+    }
+    setIsHideButton(false);
+  }, [numberToRender, filteredMoviesArray, isShortMovies]);
+
+  const handleMoreButton = () => {
+    setNumberToRender((prevState) => prevState + getMoviesConfig().numberToAdd);
+  };
+
   return (
     <>
       <Header isLoggedIn={isLoggedIn}/>
@@ -81,7 +119,9 @@ const Movies = ({
           serverResponceError={serverResponceError}
           onSaveMovie={onSaveMovie}
           onDeleteMovie={onDeleteMovie}
-          filteredMoviesArray={filteredMoviesArray}
+          filteredMoviesArray={filteredMoviesArray.slice(0, numberToRender)}
+          onClick={handleMoreButton}
+          isHideButton={isHideButton}
         />
       </main>
       <Footer />

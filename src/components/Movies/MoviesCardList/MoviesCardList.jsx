@@ -8,7 +8,9 @@ const MoviesCardList = ({
   filteredMoviesArray,
   isShortMovies,
   serverResponceError,
-  searchString
+  searchString,
+  onClick,
+  isHideButton
 }) => {
   const location = useLocation();
   const lastSearchString = JSON.parse(localStorage.getItem('lastSearchString'))
@@ -18,7 +20,11 @@ const MoviesCardList = ({
       return serverResponceError;
     }
 
-    if (location.pathname === '/movies' && filteredMoviesArray.length === 0 && lastSearchString === null ) {
+    if (
+      location.pathname === '/movies' &&
+      filteredMoviesArray.length === 0 &&
+      lastSearchString === null
+    ) {
       return 'Нужно ввести ключевое слово';
     }
 
@@ -66,12 +72,12 @@ const MoviesCardList = ({
         })}
       </ul>
 
-      {location.pathname === '/movies' && filteredMoviesArray.length !== 0 ? (
+      {location.pathname === '/movies' && filteredMoviesArray.length !== 0 && !isHideButton ? (
         <div className='load-button'>
           <button
             className='load-button__more-btn'
             type='button'
-            disabled={false}
+            onClick={onClick}
           >
             Ещё
           </button>
