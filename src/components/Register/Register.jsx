@@ -6,7 +6,7 @@ import AuthSubmit from '../AuthSubmit/AuthSubmit';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
-const Register = ({ onRegister }) => {
+const Register = ({ onRegister, isLocked }) => {
   const [serverResponseError, setServerResponseError] = useState('');
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
@@ -42,7 +42,7 @@ const Register = ({ onRegister }) => {
             handleChange={handleChangeInput}
             inputError={errors.name}
             value={values.name}
-            />
+          />
           <AuthInput
             inputDescription='E-mail'
             name='email'
@@ -52,7 +52,7 @@ const Register = ({ onRegister }) => {
             value={values.email}
             emailRegex={EMAIL_REGEX}
             title={EMAIL_TITLE_TEXT}
-            />
+          />
           <AuthInput
             inputDescription='Пароль'
             name='password'
@@ -61,13 +61,14 @@ const Register = ({ onRegister }) => {
             handleChange={handleChangeInput}
             inputError={errors.password}
             value={values.password}
-            />
+          />
 
           <AuthSubmit
             type='register'
             onRegister={onRegister}
             serverResponseError={serverResponseError}
             isValid={isValid}
+            isLocked={isLocked}
           ></AuthSubmit>
         </form>
       </div>

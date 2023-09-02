@@ -26,6 +26,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('jwt'));
   const [serverResponceError, setServerResponceError] = useState('');
+  const [isLocked, setIsLocked] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -105,29 +106,43 @@ const App = () => {
   };
 
   const handleUserRegister = (name, email, password) => {
-    return mainApi
-      .register(name, email, password)
-      .then((data) => {
-        handleUserLogin(email, password);
-      })
-      // .catch((err) => console.log(err));
+    setIsLocked(true);
+    return (
+      mainApi
+        .register(name, email, password)
+        .then((data) => {
+          handleUserLogin(email, password);
+        })
+        // .catch((err) => console.log(err))
+        .finally(() => setIsLocked(false))
+    );
   };
 
   const handleUserLogin = (email, password) => {
-    return mainApi
-      .login(email, password)
-      .then((data) => {
-        setIsLoggedIn(true);
-        navigate('/movies', { replace: true });
-      })
-      // .catch((err) => console.log(err));
+    setIsLocked(true);
+    return (
+      mainApi
+        .login(email, password)
+        .then((data) => {
+          setIsLoggedIn(true);
+          navigate('/movies', { replace: true });
+        })
+        // .catch((err) => console.log(err))
+        .finally(() => setIsLocked(false))
+    );
   };
 
   const handleUpdateUserInfo = (name, email) => {
-    return mainApi.updateUserInfo(name, email).then((currentUser) => {
-      setCurrentUser(currentUser.data);
-    });
-    // .catch((err) => console.log(err));
+    setIsLocked(true);
+    return (
+      mainApi
+        .updateUserInfo(name, email)
+        .then((currentUser) => {
+          setCurrentUser(currentUser.data);
+        })
+        // .catch((err) => console.log(err))
+        .finally(() => setIsLocked(false))
+    );
   };
 
   const handleSaveMovie = (movie) => {
@@ -179,11 +194,21 @@ const App = () => {
             <>
               <Route
                 path='/signin'
-                element={<Login handleUserLogin={handleUserLogin} />}
+                element={
+                  <Login
+                    handleUserLogin={handleUserLogin}
+                    isLocked={isLocked}
+                  />
+                }
               />
               <Route
                 path='/signup'
-                element={<Register onRegister={handleUserRegister} />}
+                element={
+                  <Register
+                    onRegister={handleUserRegister}
+                    isLocked={isLocked}
+                  />
+                }
               />
             </>
           ) : null}
@@ -220,6 +245,7 @@ const App = () => {
                   handleSignOut={handleSignOut}
                   isLoggedIn={isLoggedIn}
                   onUpdateUser={handleUpdateUserInfo}
+                  isLocked={isLocked}
                 />
               }
             />

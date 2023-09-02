@@ -6,7 +6,7 @@ import Logo from '../Logo/Logo';
 import useFormWithValidation from '../../hooks/useFormWithValidation';
 import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
-const Login = ({ handleUserLogin }) => {
+const Login = ({ handleUserLogin, isLocked }) => {
   const [serverResponseError, setServerResponseError] = useState('');
   const { values, handleChange, errors, isValid, resetForm } =
     useFormWithValidation();
@@ -44,7 +44,7 @@ const Login = ({ handleUserLogin }) => {
             emailRegex={EMAIL_REGEX}
             value={values.email}
             title={EMAIL_TITLE_TEXT}
-            />
+          />
           <AuthInput
             inputDescription='Пароль'
             name='password'
@@ -55,7 +55,12 @@ const Login = ({ handleUserLogin }) => {
             value={values.password}
           />
 
-          <AuthSubmit type='login' serverResponseError={serverResponseError} isValid={isValid} />
+          <AuthSubmit
+            type='login'
+            serverResponseError={serverResponseError}
+            isValid={isValid}
+            isLocked={isLocked}
+          />
         </form>
       </div>
     </main>

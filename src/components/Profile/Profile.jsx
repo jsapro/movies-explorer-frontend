@@ -6,7 +6,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useEffect } from 'react';
 import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
-const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
+const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser, isLocked }) => {
   const currentUser = useContext(CurrentUserContext);
   const [isReadyToSave, setIsReadyToSave] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
@@ -28,7 +28,7 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
       })
       .catch((err) => {
         setErrorMessage('Неверно введены данные. Попробуйте ещё раз');
-      });
+      })
   };
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const Profile = ({ handleSignOut, isLoggedIn, onUpdateUser }) => {
                   className='profile__submit-btn'
                   type='submit'
                   onClick={() => {}}
-                  disabled={!isValid || errorMessage}
+                  disabled={!isValid || errorMessage || isLocked}
                 >
                   Сохранить
                 </button>
