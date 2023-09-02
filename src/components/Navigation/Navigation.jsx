@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import './Navigation.css';
 // import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 

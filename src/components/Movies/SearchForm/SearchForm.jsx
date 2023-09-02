@@ -4,7 +4,7 @@ import FilterCheckbox from '../../FilterCheckbox/FilterCheckbox';
 import useFormWithValidation from '../../../hooks/useFormWithValidation';
 
 const SearchForm = ({ onSearch, onCheck, isShortMovies, searchString }) => {
-  const { values, handleChange, errors, isValid, setValues } =
+  const { values, handleChange, isValid, setValues } =
     useFormWithValidation();
 
   const handleSubmit = (e) => {

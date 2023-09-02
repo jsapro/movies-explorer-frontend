@@ -8,7 +8,7 @@ import { EMAIL_REGEX, EMAIL_TITLE_TEXT } from '../../utils/constants';
 
 const Login = ({ handleUserLogin, isLocked }) => {
   const [serverResponseError, setServerResponseError] = useState('');
-  const { values, handleChange, errors, isValid, resetForm } =
+  const { values, handleChange, errors, isValid } =
     useFormWithValidation();
 
   const handleLoginSubmit = (e) => {

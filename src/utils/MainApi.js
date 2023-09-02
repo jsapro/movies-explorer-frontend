@@ -1,5 +1,3 @@
-import { BASIC_MOVIES_URL } from './constants';
-
 class MainApi {
   constructor(baseUrl) {
     this._baseUrl = baseUrl;
