@@ -34,7 +34,7 @@
     min-height: 44px;
     padding: 0;
     background: transparent;
-    background-image: url('../../../images/search-btn.svg');
+    background-image: url('../../images/search-btn.svg');
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
@@ -43,6 +43,17 @@
 
 .search-form__button:hover {
     transform: scale(1.07);
+}
+
+.search-form__button:disabled {
+    cursor: not-allowed;
+    transform: none;
+}
+
+.search-form__button:hover:disabled::after {
+    content: '❌';
+    border-radius: 25%;
+    background-color: #EE3465;
 }
 
 @media all and (min-width: 768px) {
@@ -58,6 +69,8 @@
 @media all and (min-width: 1280px) {
     .search-form {
         padding: 79px 70px 10px;
+        max-width: 1280px;
+        margin: 0 auto;
     }
 
 }

@@ -13,8 +13,6 @@
 }
 
 .auth-submit__error-text {
-    /* скрыто пока нет ошибки */
-    display: none;
     color: #FF004C;
     text-align: center;
     font-size: 11px;
@@ -35,6 +33,12 @@
     border: none;
     padding: 15px 0;
     cursor: pointer;
+}
+
+.auth-submit__button:disabled {
+    background: #272727;
+    border: 0.5px dotted white;
+    cursor: not-allowed;
 }
 
 .auth-submit__question {
@@ -61,20 +65,20 @@
     .auth-submit_type_login {
         padding: 179px 0 0;
     }
-    
+
     .auth-submit_type_register {
         padding: 91px 0 0;
     }
-    
+
     .auth-submit__button {
         font-size: 14px;
     }
-    
+
     .auth-submit__question {
         font-size: 14px;
         padding: 16px 0 0 0;
     }
-    
+
     .auth-submit__link {
         font-size: 14px;
         padding-left: 6px;

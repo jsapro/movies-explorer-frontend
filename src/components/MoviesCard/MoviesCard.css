@@ -17,6 +17,11 @@
     object-fit: cover;
     width: 100%;
     min-height: 168px;
+    aspect-ratio: 1.784;
+}
+
+.movies-card__img_inactive {
+    display: none;
 }
 
 .movies-card__link {
@@ -50,12 +55,12 @@
 }
 
 .movies-card__btn_type_active {
-    background-image: url('../../../images/saved-btn.svg');
+    background-image: url('../../images/saved-btn.svg');
     width: 21px;
 }
 
 .movies-card__btn_type_collection {
-    background-image: url('../../../images/collection-btn.svg');
+    background-image: url('../../images/collection-btn.svg');
     width: 21px;
 }
 
