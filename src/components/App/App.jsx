@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
@@ -190,28 +190,34 @@ const App = () => {
       <div className='page'>
         <Routes>
           <Route path='/' element={<Main isLoggedIn={isLoggedIn} />} />
-          {!isLoggedIn ? (
-            <>
-              <Route
-                path='/signin'
-                element={
+          <>
+            <Route
+              path='/signin'
+              element={
+                isLoggedIn ? (
+                  <Navigate to='/' replace />
+                ) : (
                   <Login
                     handleUserLogin={handleUserLogin}
                     isLocked={isLocked}
                   />
-                }
-              />
-              <Route
-                path='/signup'
-                element={
+                )
+              }
+            />
+            <Route
+              path='/signup'
+              element={
+                isLoggedIn ? (
+                  <Navigate to='/' replace />
+                ) : (
                   <Register
                     onRegister={handleUserRegister}
                     isLocked={isLocked}
                   />
-                }
-              />
-            </>
-          ) : null}
+                )
+              }
+            />
+          </>
           <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
             <Route
               path='/movies'
